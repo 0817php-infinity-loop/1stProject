@@ -44,7 +44,6 @@ a {
 	width: 1400px;
 	height: 700px;
 	margin-left: 75px;
-	position: absolute;
 }
 
 /* 좌측 레이아웃 설정 */
@@ -125,12 +124,27 @@ a {
 /* 상세페이지 */
 
 /* 삽입페이지 */
-.post_it img{
+/* .post_it{
 	text-align: center;
 	width: 400px;
-	height: 400px;
-	/* z-index: 4; */
+	height: 600px;
+	margin: 0 auto;
+	background-image: url("/todolist/doc/00_emotion_positon.png");
+	background-size: 100%;
+	background-repeat: no-repeat;
+} */
+
+.post_it{
+	text-align: center;
+	width: 400px;
+	height: 600px;
+	margin: 0 auto;
+	background-image: url("/todolist/doc/img/postit.png");
+	background-size: 100%;
+	background-repeat: no-repeat;
 }
+
+
 
 .align_center {
 	text-align: center;
