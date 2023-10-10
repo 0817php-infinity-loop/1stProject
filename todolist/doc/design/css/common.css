@@ -54,7 +54,7 @@ a {
 	float:left;
 	position: relative;
 	z-index: 3;
-	background-image: url(/todolist/doc/design/img/graph_wallpaper.png);
+	background-image: url(/todolist/doc/img/graph_wallpaper.png);
 	border-radius: 5px 0px 0px 5px;
 	border-right: 1px solid rgba(0, 0, 0, 0.5);
 	filter:drop-shadow(5px 5px 15px rgb(36, 29, 29));
@@ -125,12 +125,18 @@ a {
 /* 상세페이지 */
 
 /* 삽입페이지 */
+.post_it img{
+	text-align: center;
+	width: 400px;
+	height: 400px;
+	/* z-index: 4; */
+}
 
 .align_center {
 	text-align: center;
 }
 
-.textarea1 {
+.textarea_1 {
 	width: 400px;
 	height: 50px;
 	padding: 10px;
@@ -144,7 +150,7 @@ a {
 	border: 0.1px solid rgb(255, 255, 255, 0.7);
 }
 
-.textarea2 {	
+.textarea_2 {	
 	width: 400px;
 	height: 400px;
 	padding: 10px;

@@ -9,7 +9,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>메인 페이지</title>
-	<link rel="stylesheet" href="/todolist/src/css/common.css">	
+	<link rel="stylesheet" href="/todolist/doc/design/css/common.css">	
 </head>
 <body>
 	<div class="top_container">
@@ -18,19 +18,24 @@
 	<div class="main_container">
 		<div class="main_container_box">
 			<div class="left_box">
-				<div class="box_layout">box_layout</div>
+				<div class="box_layout">
+					<div class="post_it">
+						<img src="/todolist/doc/img/postit.png">
+					</div>
+				</div>
 			</div>
 				
 			<div class="right_box">
 				<div class="box_layout">
 					<form class="align_center" action="" method="post">						
 						<label for="title"></label>
-						<input type="text" class = 'textarea_1' name="title" id="title" maxlength="20" 
+						<input type="text" class = 'textarea_1' name="title" id="title" value="title" maxlength="20" 
 						placeholder="제목을 입력해주세요.">
 						<br><br>
 						<label for="content"></label>
 						<textarea class = 'textarea_2' name="content" id="content" cols="25" rows="10"
 						placeholder="내용을 입력해주세요."></textarea>
+						<!-- <?php echo $content; ?> textarea 닫는태그 앞 입력 -->
 					</form>
 				</div>
 			</div>
