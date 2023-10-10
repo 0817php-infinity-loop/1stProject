@@ -1,0 +1,118 @@
+@font-face {
+    font-family: 'omyu_pretty';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/omyu_pretty.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+	font-family: 'omyu_pretty';
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	font-size: 14px;
+}
+
+/* 배경 색상 지정 */
+body {
+	background-color: rgb(231, 210, 184);
+}
+
+/* a태그 밑줄, 링크색 없애기 */
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+/* 상단 레이아웃 설정 */
+.top_container {
+	height: 100px;
+}
+
+/* 메인 레이아웃 설정 */
+.main_container {
+	width: 1500px;
+	height: 800px;
+	background-color: rgba(76, 61, 54, 0.9);
+	margin: 0 auto;
+	border-radius: 20px;
+	padding-top:50px;
+}
+
+.main_container_box {
+	width: 1400px;
+	height: 700px;
+	margin-left: 75px;
+	position: absolute;
+}
+
+/* 좌측 레이아웃 설정 */
+.left_box {
+	width: 670px;
+	height: 100%;
+	float:left;
+	position: relative;
+	z-index: 3;
+	background-image: url(/todolist/doc/design/img/graph_wallpaper.png);
+	border-radius: 5px 0px 0px 5px;
+	border-right: 1px solid rgba(0, 0, 0, 0.5);
+	filter:drop-shadow(5px 5px 15px rgb(36, 29, 29));
+	padding: 20px;
+}
+
+.box_layout {
+	width: 100%;
+	height: 100%;
+}
+
+/* 우측 레이아웃 설정 */
+.right_box {
+	width: 670px;
+	height: 100%;
+	float:left;
+	position: relative;
+	z-index: 1;
+	background-color: #FEFAEF;
+	border-radius: 0px 5px 5px 0px;
+	filter:drop-shadow(5px 5px 15px rgb(36, 29, 29));
+	padding: 20px;
+}
+
+/* 사이드바 레이아웃 설정 */
+.side_box {
+	width: 40px;
+	height: 100%;
+	float:left;
+	position: relative;
+	z-index: 2;
+	margin-top:10px;
+}
+
+.side_category {
+	width:100%;
+	height: 100px;
+	border-radius: 0px 20px 20px 0px;
+	margin-top:1px;
+}
+
+.bgc_cate1 {
+	background-color: rgb(233, 236, 99);
+}
+
+.bgc_cate2 {
+	background-color: rgb(192, 236, 99);
+}
+
+.bgc_cate3 {
+	background-color: rgb(236, 140, 99);
+}
+
+.side_text {
+	width: 70%;
+	height: 100%;
+	writing-mode: vertical-rl;
+	text-align: center;
+	font-size: 20px;
+	font-weight: bold;
+	letter-spacing: 2px;
+}
