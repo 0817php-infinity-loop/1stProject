@@ -196,6 +196,25 @@ a {
 	margin: 10px 20px;
 }
 
+/* 감정표현 호버효과 */
+
+.emoticon_2 img {
+	-webkit-transform: scale(1);
+	transform: scale(1);
+	-webkit-transition: .5s ease-in-out;
+	transition: .5s ease-in-out;
+}
+.emoticon_2:hover img {
+	-webkit-transform: scale(1.3);
+	transform: scale(1.3);
+}
+
+.emoticon_2:visited img {
+	-webkit-transform: scale(1.3);
+	transform: scale(1.3);
+}
+/* #으로 링크되어 있는 주소에서 a:visited 스타일 적용 안됨/반드시 css 확인할 것 */
+
 .date {
 	width: 400px;
 	height: 150px;
@@ -207,23 +226,30 @@ a {
 }
 
 .align_center {
-	text-align: center;
+	text-align: center;	
 }
 
 .align_center p {
 	font-size: 40px;
 }
 
+.flower_red {
+	margin-top: 10px;
+	width: 60px;
+	height: 60px;
+}
+
 .textarea_1 {
 	width: 400px;
 	height: 50px;
-	padding: 10px;
+	padding: 20px;
 	background-color: #e6dfd4;
 	box-sizing: border-box;
 	border-radius: 10px;	
 	resize: none;
 	vertical-align:middle;
 	border: none;
+	font-size: 25px;
 }
 
 .textarea_1:focus {
@@ -233,13 +259,14 @@ a {
 .textarea_2 {	
 	width: 400px;
 	height: 400px;
-	padding: 10px;
+	padding: 20px;
 	background-color: #e6dfd4;
 	box-sizing: border-box;
 	border-radius: 10px;	
 	resize: none;
 	vertical-align:middle;
 	border: none;
+	font-size: 20px;
 }
 
 .textarea_2:focus {
