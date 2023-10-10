@@ -139,11 +139,27 @@ a {
     height: 420px;
 }
 /* 삽입페이지 */
-.post_it img{
+/* .post_it{
 	text-align: center;
 	width: 400px;
-	height: 400px;
+	height: 600px;
+	margin: 0 auto;
+	background-image: url("/todolist/doc/00_emotion_positon.png");
+	background-size: 100%;
+	background-repeat: no-repeat;
+} */
+
+.post_it{
+	text-align: center;
+	width: 400px;
+	height: 600px;
+	margin: 0 auto;
+	background-image: url("/todolist/doc/img/postit.png");
+	background-size: 100%;
+	background-repeat: no-repeat;
 }
+
+
 
 .align_center {
 	text-align: center;
