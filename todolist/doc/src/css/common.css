@@ -1,3 +1,4 @@
+/* 공통 부분 */
 @font-face {
     font-family: 'omyu_pretty';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/omyu_pretty.woff2') format('woff2');
@@ -116,3 +117,15 @@ a {
 	font-weight: bold;
 	letter-spacing: 2px;
 }
+
+/* 메인페이지 */
+
+/* 리스트페이지 */
+
+/* 상세페이지 */
+
+/* 삽입페이지 */
+
+/* 수정페이지 */
+
+/* 삭제페이지 */
