@@ -126,6 +126,38 @@ a {
 
 /* 삽입페이지 */
 
+.align_center {
+	text-align: center;
+}
+
+.textarea1 {
+	width: 400px;
+	height: 50px;
+	padding: 10px;
+	background-color: rgba(71, 100, 114, 0.3);
+	box-sizing: border-box;
+	border: solid transparent;
+	border-radius: 10px;	
+	resize: none;
+	color: rgb(255, 255, 255, 0.7);
+	vertical-align:middle;
+	border: 0.1px solid rgb(255, 255, 255, 0.7);
+}
+
+.textarea2 {	
+	width: 400px;
+	height: 400px;
+	padding: 10px;
+	background-color: rgba(71, 100, 114, 0.3);
+	box-sizing: border-box;
+	border: solid transparent;
+	border-radius: 10px;	
+	resize: none;
+	color: rgb(255, 255, 255, 0.7);
+	vertical-align:middle;
+	border: 0.1px solid rgb(255, 255, 255, 0.7);
+}
+
 /* 수정페이지 */
 
 /* 삭제페이지 */
