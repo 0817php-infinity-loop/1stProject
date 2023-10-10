@@ -9,8 +9,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>삭제 페이지</title>
-	<link rel="stylesheet" href="/todolist/src/css/common.css">
-    <link rel="stylesheet" href="/todolist/src/css/delete_detail.css">
+	<link rel="stylesheet" href="/todolist/doc/src/css/common.css">
 </head>
 <body>
 	<div class="top_container">
@@ -23,14 +22,13 @@
 			</div>
 				
 			<div class="right_box">
-            <tr>
-            <th>제목</th>
-            <td></td>
-        </tr>
-        <tr>
-            <th>내용</th>
-            <td></td>
-        </tr>
+				<form action="" method="post">						
+					<label for="title"></label>
+					<input type="text" class = 'textarea1' name="title" id="title" maxlength="20">
+					<br><br>
+					<label for="content"></label>
+					<textarea class = 'textarea2' name="content" id="content" cols="25" rows="10"></textarea>
+				</form>
 				<div class="box_layout">box_layout</div>
 			</div>
 
