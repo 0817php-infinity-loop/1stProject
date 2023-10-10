@@ -138,60 +138,79 @@ a {
     width: 370px;
     height: 420px;
 }
+
 /* 삽입페이지 */
-/* .post_it{
-	text-align: center;
-	width: 400px;
-	height: 600px;
-	margin: 0 auto;
-	background-image: url("/todolist/doc/00_emotion_positon.png");
-	background-size: 100%;
-	background-repeat: no-repeat;
-} */
 
 .post_it{
 	text-align: center;
 	width: 400px;
-	height: 600px;
-	margin: 0 auto;
+	height: 470px;
+	margin: 40px auto;
 	background-image: url("/todolist/doc/img/postit.png");
 	background-size: 100%;
 	background-repeat: no-repeat;
 }
 
+.emoticon_1 {
+	padding-top: 100px;
+}
 
+.emo {
+	width: 80px;
+	height: 80px;
+	margin: 10px 20px;
+}
+
+.date {
+	width: 400px;
+	height: 150px;
+	padding: 10px;
+	margin: 0 auto;
+	box-sizing: border-box;
+	vertical-align:middle;
+	border: none;
+}
 
 .align_center {
 	text-align: center;
+}
+
+.align_center p {
+	font-size: 40px;
 }
 
 .textarea_1 {
 	width: 400px;
 	height: 50px;
 	padding: 10px;
-	background-color: rgba(71, 100, 114, 0.3);
+	background-color: #e6dfd4;
 	box-sizing: border-box;
-	border: solid transparent;
 	border-radius: 10px;	
 	resize: none;
-	color: rgb(255, 255, 255, 0.7);
 	vertical-align:middle;
-	border: 0.1px solid rgb(255, 255, 255, 0.7);
+	border: none;
+}
+
+.textarea_1:focus {
+	outline: none;
 }
 
 .textarea_2 {	
 	width: 400px;
 	height: 400px;
 	padding: 10px;
-	background-color: rgba(71, 100, 114, 0.3);
+	background-color: #e6dfd4;
 	box-sizing: border-box;
-	border: solid transparent;
 	border-radius: 10px;	
 	resize: none;
-	color: rgb(255, 255, 255, 0.7);
 	vertical-align:middle;
-	border: 0.1px solid rgb(255, 255, 255, 0.7);
+	border: none;
 }
+
+.textarea_2:focus {
+	outline: none;
+}
+
 
 /* 수정페이지 */
 
