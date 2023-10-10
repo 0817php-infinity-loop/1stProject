@@ -123,20 +123,32 @@ a {
 
 /* 상세페이지 */
 .calender {
-    margin: 10px 0 0 10px;
+    z-index: 1;
+    position: absolute;
+    margin: 0 0 0 10px;
     background-repeat: no-repeat;
     background-image: url(/todolist/doc/img/detail_calender.png);
-    background-size: 100%;
+    background-size: 90%;
+    width: 420px;
+    height: 550px;
+}
+.detail_img {
+	position: absolute;
+    margin: 250px 0 0 350px;
+    background-repeat: no-repeat;
+    background-image: url(/todolist/doc/img/detail_img.png);
+    background-size: 70%;
     width: 370px;
     height: 420px;
 }
 .chklist {
-    margin: 10px 0 0 10px;
+    position: absolute;
+    margin: 420px 0 0 150px;
     background-repeat: no-repeat;
     background-image: url(/todolist/doc/img/detail_chklist.png);
-    background-size: 100%;
+    background-size: 83%;
     width: 370px;
-    height: 420px;
+    height: 270px;
 }
 /* 삽입페이지 */
 /* .post_it{
@@ -151,7 +163,7 @@ a {
 
 .post_it{
 	text-align: center;
-	width: 400px;
+	width: 450px;
 	height: 600px;
 	margin: 0 auto;
 	background-image: url("/todolist/doc/img/postit.png");
