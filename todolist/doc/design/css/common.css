@@ -44,7 +44,6 @@ a {
 	width: 1400px;
 	height: 700px;
 	margin-left: 75px;
-	position: absolute;
 }
 
 /* 좌측 레이아웃 설정 */
@@ -123,13 +122,27 @@ a {
 /* 리스트페이지 */
 
 /* 상세페이지 */
-
+.calender {
+    margin: 10px 0 0 10px;
+    background-repeat: no-repeat;
+    background-image: url(/todolist/doc/img/detail_calender.png);
+    background-size: 100%;
+    width: 370px;
+    height: 420px;
+}
+.chklist {
+    margin: 10px 0 0 10px;
+    background-repeat: no-repeat;
+    background-image: url(/todolist/doc/img/detail_chklist.png);
+    background-size: 100%;
+    width: 370px;
+    height: 420px;
+}
 /* 삽입페이지 */
 .post_it img{
 	text-align: center;
 	width: 400px;
 	height: 400px;
-	/* z-index: 4; */
 }
 
 .align_center {
