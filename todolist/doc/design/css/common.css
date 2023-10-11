@@ -277,3 +277,17 @@ a {
 /* 수정페이지 */
 
 /* 삭제페이지 */
+.align_center p span {
+	color: red;
+	font-size: 40px;
+}
+.delete_img_center {
+	text-align: center;
+}
+
+.delete_img {
+    margin-top: 145px;
+	margin-bottom: 80px;
+    width: 380px;
+    height: 80px;
+}
