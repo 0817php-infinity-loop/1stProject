@@ -118,6 +118,13 @@ a {
 	letter-spacing: 2px;
 }
 
+.button_text {
+	border: none;
+	background: none;
+	margin-left: 5px;
+	cursor: pointer;
+}
+
 /* 메인페이지 */
 /* 메인페이지 */
 
@@ -381,6 +388,11 @@ a {
 	width: 80px;
 	height: 80px;
 	margin: 10px 20px;
+}
+
+.emoticon_2 {
+	border: none;
+	background: none;
 }
 
 /* 감정표현 호버효과 */
