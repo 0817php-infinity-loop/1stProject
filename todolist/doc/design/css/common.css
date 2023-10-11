@@ -298,6 +298,20 @@ a {
 
 /* 상세페이지 */
 /* 상세페이지 */
+.detail_emo {
+	margin-top: 10px;
+	width: 60px;
+	height: 60px;
+}
+
+.say {
+	height: 300px;
+	width: 300px;
+	position: absolute;
+	margin-top: 20px;
+	margin-left: 430px;
+}
+
 .calender {
     z-index: 1;
     position: absolute;
