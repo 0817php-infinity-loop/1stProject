@@ -151,26 +151,26 @@ a {
     margin: 0 0 0 10px;
     background-repeat: no-repeat;
     background-image: url(/todolist/doc/img/detail_calender.png);
-    background-size: 90%;
+    background-size: 80%;
     width: 420px;
     height: 550px;
 }
 .detail_img {
-	position: absolute;
-    margin: 250px 0 0 350px;
+    position: absolute;
+    margin: 230px 0 0 300px;
     background-repeat: no-repeat;
     background-image: url(/todolist/doc/img/detail_img.png);
-    background-size: 70%;
+    background-size: 80%;
     width: 370px;
     height: 420px;
 }
 .chklist {
-    position: absolute;
-    margin: 420px 0 0 150px;
+	position: absolute;
+    margin: 400px 0 0 130px;
     background-repeat: no-repeat;
     background-image: url(/todolist/doc/img/detail_chklist.png);
-    background-size: 83%;
-    width: 370px;
+    background-size: 90%;
+    width: 380px;
     height: 270px;
 }
 
@@ -286,8 +286,8 @@ a {
 }
 
 .delete_img {
-    margin-top: 145px;
-	margin-bottom: 80px;
-    width: 380px;
-    height: 80px;
+	margin-top: 145px;
+    margin-bottom: 60px;
+    width: 280px;
+    height: 65px;
 }
