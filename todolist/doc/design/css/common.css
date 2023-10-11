@@ -1,4 +1,5 @@
 /* 공통 부분 */
+/* 공통 부분 */
 @font-face {
     font-family: 'omyu_pretty';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/omyu_pretty.woff2') format('woff2');
@@ -118,11 +119,19 @@ a {
 }
 
 /* 메인페이지 */
-.test111 img {
-	width: 100px;
-	height: 100px;
+/* 메인페이지 */
+.main_left, .main_right {
+	float: left;
+	width: 50%;
+	height: 100%;
 }
 
+.main_img {
+	width: 100%;
+	height: 100%;
+}
+
+/* 리스트페이지 */
 /* 리스트페이지 */
 .left_top {
 	width: 100%;
@@ -286,6 +295,8 @@ a {
 	font-size: 18px;
 	border: 1px solid #ccc;
 }
+
+/* 상세페이지 */
 /* 상세페이지 */
 .calender {
     z-index: 1;
@@ -317,7 +328,7 @@ a {
 }
 
 /* 삽입페이지 */
-
+/* 삽입페이지 */
 .post_it{
 	text-align: center;
 	width: 400px;
@@ -339,7 +350,6 @@ a {
 }
 
 /* 감정표현 호버효과 */
-
 .emoticon_2 img {
 	-webkit-transform: scale(1);
 	transform: scale(1);
@@ -354,8 +364,7 @@ a {
 .emoticon_2:visited img {
 	-webkit-transform: scale(1.3);
 	transform: scale(1.3);
-}
-/* #으로 링크되어 있는 주소에서 a:visited 스타일 적용 안됨/반드시 css 확인할 것 */
+} /* #으로 링크되어 있는 주소에서 a:visited 스타일 적용 안됨/반드시 css 확인할 것 */
 
 .date {
 	width: 400px;
@@ -415,9 +424,10 @@ a {
 	outline: none;
 }
 
-
+/* 수정페이지 */
 /* 수정페이지 */
 
+/* 삭제페이지 */
 /* 삭제페이지 */
 .align_center p span {
 	color: red;
