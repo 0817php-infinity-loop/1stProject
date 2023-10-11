@@ -98,7 +98,7 @@ try {
 			<div class="right_box">
 				<div class="box_layout">
 					<div class="align_center date">
-						<img class="delete_emo" src="../img/emotion_1.png">
+						<img class="delete_emo" src="/todolist/doc/img/emotion_1.png">
 						<p>2023년 10월 16일<br>
 							금요일
 						</p>
