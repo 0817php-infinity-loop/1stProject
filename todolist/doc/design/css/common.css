@@ -293,6 +293,14 @@ a {
 	height: 60px;
 }
 
+.say {
+	height: 300px;
+	width: 300px;
+	position: absolute;
+	margin-top: 20px;
+	margin-left: 430px;
+}
+
 .calender {
     z-index: 1;
     position: absolute;
