@@ -118,6 +118,10 @@ a {
 }
 
 /* 메인페이지 */
+.test111 img {
+	width: 100px;
+	height: 100px;
+}
 
 /* 리스트페이지 */
 .left_top {
@@ -233,7 +237,7 @@ a {
 	font-size: 40px;
 }
 
-.flower_red {
+.flower {
 	margin-top: 10px;
 	width: 60px;
 	height: 60px;
