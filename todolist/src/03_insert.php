@@ -79,25 +79,27 @@ if($http_method === "POST") {
 		<div class="main_container_box">
 			<div class="left_box">
 				<div class="box_layout">
-					<div class="post_it">
-						<div class="emoticon_1">
-							<a class="emoticon_2" href="#"><img class="emo" src="/todolist/doc/img/emotion_1.png"></a>
-							<a class="emoticon_2" href="#"><img class="emo" src="/todolist/doc/img/emotion_2.png"></a>
-							<a class="emoticon_2" href="#"><img class="emo" src="/todolist/doc/img/emotion_3.png"></a>
-							<!-- #으로 링크되어 있는 주소에서 a:visited 스타일 적용 안됨/반드시 css 확인할 것 -->
+					<form action="" method="post">
+						<div class="post_it">
+							<div class="emoticon_1">
+								<button class="emoticon_2" value="1"><img class="emo" src="/todolist/doc/img/emotion_1.png"></button>
+								<button class="emoticon_2" value="2"><img class="emo" src="/todolist/doc/img/emotion_2.png"></button>
+								<button class="emoticon_2" value="3"><img class="emo" src="/todolist/doc/img/emotion_3.png"></button>
+								<!-- #으로 링크되어 있는 주소에서 a:visited 스타일 적용 안됨/반드시 css 확인할 것 -->
+							</div>
+							<div>
+								<button class="emoticon_2" value="4"><img class="emo" src="/todolist/doc/img/emotion_4.png"></button>
+								<button class="emoticon_2" value="5"><img class="emo" src="/todolist/doc/img/emotion_5.png"></button>
+								<button class="emoticon_2" value="6"><img class="emo" src="/todolist/doc/img/emotion_6.png"></button>
+								<!-- #으로 링크되어 있는 주소에서 a:visited 스타일 적용 안됨/반드시 css 확인할 것 -->
+							</div>
+							<div>
+								<button class="emoticon_2" value="7"><img class="emo" src="/todolist/doc/img/emotion_7.png"></button>
+								<button class="emoticon_2" value="8"><img class="emo" src="/todolist/doc/img/emotion_8.png"></button>
+								<!-- #으로 링크되어 있는 주소에서 a:visited 스타일 적용 안됨/반드시 css 확인할 것 -->
+							</div>
 						</div>
-						<div>
-							<a class="emoticon_2" href="#"><img class="emo" src="/todolist/doc/img/emotion_4.png"></a>
-							<a class="emoticon_2" href="#"><img class="emo" src="/todolist/doc/img/emotion_5.png"></a>
-							<a class="emoticon_2" href="#"><img class="emo" src="/todolist/doc/img/emotion_6.png"></a>
-							<!-- #으로 링크되어 있는 주소에서 a:visited 스타일 적용 안됨/반드시 css 확인할 것 -->
-						</div>
-						<div>
-							<a class="emoticon_2" href="#"><img class="emo" src="/todolist/doc/img/emotion_7.png"></a>
-							<a class="emoticon_2" href="#"><img class="emo" src="/todolist/doc/img/emotion_8.png"></a>
-							<!-- #으로 링크되어 있는 주소에서 a:visited 스타일 적용 안됨/반드시 css 확인할 것 -->
-						</div>
-					</div>
+					</form>
 					<div class="align_center">
 						<p class="align_center_txt">감정을 선택해 주세요 !</p>
 					</div>
