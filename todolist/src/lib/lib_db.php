@@ -170,11 +170,13 @@ function todolist_db_insert_boards(&$conn, &$arr_param) {
 		." VALUES ( "
 		." :title "
 		." ,:content "
+		." ,:emotion "
 		." ) "
 		;
 	$arr_ps = [
 		":title" => $arr_param["title"]
 		,":content" => $arr_param["content"]
+		,":emotion" => $arr_param["emotion"]
 	];
 
 	try {
