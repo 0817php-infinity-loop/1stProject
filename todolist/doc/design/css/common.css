@@ -16,7 +16,14 @@
 
 /* 배경 색상 지정 */
 body {
-	background-color: rgb(231, 210, 184);
+	background-color: rgb(240, 227, 216);
+}
+
+.main_diary {
+	width: 100%;
+	height: 80%;
+	background-image: url(/todolist/doc/img/main.png);
+	background-repeat: no-repeat;
 }
 
 /* a태그 밑줄, 링크색 없애기 */
@@ -27,16 +34,16 @@ a {
 
 /* 상단 레이아웃 설정 */
 .top_container {
-	height: 100px;
+	height: 200px;
 }
 
 /* 메인 레이아웃 설정 */
 .main_container {
 	width: 1500px;
 	height: 800px;
-	background-color: rgba(76, 61, 54, 0.9);
+	background-color: rgb(128, 74, 43);
 	margin: 0 auto;
-	border-radius: 20px;
+	border-radius: 10px;
 	padding-top:50px;
 }
 
@@ -288,9 +295,9 @@ a {
 }
 /* 상세페이지 */
 .detail_emo {
-	margin-top: 10px;
-	width: 60px;
-	height: 60px;
+	margin-bottom: 10px;
+	width: 70px;
+	height: 70px;
 }
 
 .calender {
@@ -377,14 +384,18 @@ a {
 	text-align: center;	
 }
 
-.align_center p {
+.align_center_txt {
 	font-size: 40px;
 }
 
+.align_center_date {
+	font-size: 27px;
+}
+
 .flower {
-	margin-top: 10px;
+	margin-bottom: 10px;
 	width: 60px;
-	height: 60px;
+	height: 70px;
 }
 
 .textarea_1 {
@@ -421,20 +432,21 @@ a {
 	outline: none;
 }
 
-
-/* 수정페이지 */
-
 /* 삭제페이지 */
 .delete_emo {
-	margin-top: 10px;
-	width: 60px;
-	height: 60px;
+	margin-bottom: 10px;
+	width: 70px;
+	height: 70px;
 }
 
-.align_center p span {
+.align_center_txt_red  {
 	color: red;
 	font-size: 40px;
 }
+.align_center_txt_del {
+	font-size: 40px;
+}
+
 .delete_img_center {
 	text-align: center;
 }
