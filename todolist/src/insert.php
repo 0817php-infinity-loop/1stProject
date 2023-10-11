@@ -1,7 +1,7 @@
 <?php
 define("ROOT", $_SERVER["DOCUMENT_ROOT"]."/todolist/src/");//웹서버root
 define("ERROR_MSG_PARAM", "%s필수 입력 사항입니다.");// 파라미터 에러 메세지
-require_once(ROOT."lib/lib_db_test.php");// DB관련 라이브러리
+require_once(ROOT."lib/lib_db.php");// DB관련 라이브러리
 
 // post로 request가 있을 때 처리
 $conn = null; // DB Connection 변수
@@ -81,20 +81,20 @@ if($http_method === "POST") {
 				<div class="box_layout">
 					<div class="post_it">
 						<div class="emoticon_1">
-							<a class="emoticon_2" href="#"><img class="emo" src="../img/emotion_1.png"></a>
-							<a class="emoticon_2" href="#"><img class="emo" src="../img/emotion_2.png"></a>
-							<a class="emoticon_2" href="#"><img class="emo" src="../img/emotion_3.png"></a>
+							<a class="emoticon_2" href="#"><img class="emo" src="/todolist/doc/img/emotion_1.png"></a>
+							<a class="emoticon_2" href="#"><img class="emo" src="/todolist/doc/img/emotion_2.png"></a>
+							<a class="emoticon_2" href="#"><img class="emo" src="/todolist/doc/img/emotion_3.png"></a>
 							<!-- #으로 링크되어 있는 주소에서 a:visited 스타일 적용 안됨/반드시 css 확인할 것 -->
 						</div>
 						<div>
-							<a class="emoticon_2" href="#"><img class="emo" src="../img/emotion_4.png"></a>
-							<a class="emoticon_2" href="#"><img class="emo" src="../img/emotion_5.png"></a>
-							<a class="emoticon_2" href="#"><img class="emo" src="../img/emotion_6.png"></a>
+							<a class="emoticon_2" href="#"><img class="emo" src="/todolist/doc/img/emotion_4.png"></a>
+							<a class="emoticon_2" href="#"><img class="emo" src="/todolist/doc/img/emotion_5.png"></a>
+							<a class="emoticon_2" href="#"><img class="emo" src="/todolist/doc/img/emotion_6.png"></a>
 							<!-- #으로 링크되어 있는 주소에서 a:visited 스타일 적용 안됨/반드시 css 확인할 것 -->
 						</div>
 						<div>
-							<a class="emoticon_2" href="#"><img class="emo" src="../img/emotion_7.png"></a>
-							<a class="emoticon_2" href="#"><img class="emo" src="../img/emotion_8.png"></a>
+							<a class="emoticon_2" href="#"><img class="emo" src="/todolist/doc/img/emotion_7.png"></a>
+							<a class="emoticon_2" href="#"><img class="emo" src="/todolist/doc/img/emotion_8.png"></a>
 							<!-- #으로 링크되어 있는 주소에서 a:visited 스타일 적용 안됨/반드시 css 확인할 것 -->
 						</div>
 					</div>
@@ -107,7 +107,7 @@ if($http_method === "POST") {
 			<div class="right_box">
 				<div class="box_layout">
 					<div class="align_center date">
-						<img class="flower" src="../img/flower_red.png">
+						<img class="flower" src="/todolist/doc/img/flower_red.png">
 						<p class="align_center_date">2023년 10월 16일<br>
 							금요일
 						</p>
@@ -129,7 +129,7 @@ if($http_method === "POST") {
 
 			<div class="side_box">
 				<div class="side_category bgc_cate1">
-					<button class= "side_text1" href="/todolist/doc/design/03_insert.html">작성</button>
+					<button class= "side_text button_text" href="/todolist/doc/design/03_insert.html">작성</button>
 				</div>
 				<div class="side_category bgc_cate3">
 					<a class= "side_text" href="/todolist/doc/design/01_list.html">취소</a>

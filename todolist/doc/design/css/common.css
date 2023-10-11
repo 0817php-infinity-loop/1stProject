@@ -125,6 +125,13 @@ a {
 	letter-spacing: 2px;
 }
 
+.button_text {
+	border: none;
+	background: none;
+	margin-left: 5px;
+	cursor: pointer;
+}
+
 /* 메인페이지 */
 /* 메인페이지 */
 .main_left, .main_right {
