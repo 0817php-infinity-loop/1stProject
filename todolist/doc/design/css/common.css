@@ -282,6 +282,12 @@ a {
 	border: 1px solid #ccc;
 }
 /* 상세페이지 */
+.detail_emo {
+	margin-top: 10px;
+	width: 60px;
+	height: 60px;
+}
+
 .calender {
     z-index: 1;
     position: absolute;
@@ -414,6 +420,12 @@ a {
 /* 수정페이지 */
 
 /* 삭제페이지 */
+.delete_emo {
+	margin-top: 10px;
+	width: 60px;
+	height: 60px;
+}
+
 .align_center p span {
 	color: red;
 	font-size: 40px;
