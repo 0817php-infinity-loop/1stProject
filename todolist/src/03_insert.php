@@ -93,7 +93,6 @@ if($http_method === "POST") {
                                     <label class="emotion_each" for="emotion1">
                                     <input type="radio" name="em_id" id="emotion1" value="1">
                                     <img class="emo" src="/todolist/doc/img/emotion_1.png">
-                                    <img class="emo_1" src="/todolist/doc/img/emotion_op_1.png">
                                     </label>
                                 </div>
                                 <div class="emotion_lay1">
