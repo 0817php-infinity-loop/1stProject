@@ -65,7 +65,7 @@ $page = $_GET["page"];
 		<div class="main_container_box">
 			<div class="left_box">
 				<div class="box_layout">
-					<div class="say">명언</div>
+					<div class="say">명언 위치</div>
 					<div class="calender">
 					</div>
 					<div class="detail_img">
@@ -78,7 +78,7 @@ $page = $_GET["page"];
 			<div class="right_box">
 				<div class="box_layout">
 					<div class="align_center date">
-						<img class="detail_emo" src="todolist/doc/img/emotion_1.png">
+						<img class="detail_emo" src="/todolist/doc/img/emotion_2.png">
 						<p class="align_center_date">2023년 10월 16일<br>
 							금요일
 						</p>

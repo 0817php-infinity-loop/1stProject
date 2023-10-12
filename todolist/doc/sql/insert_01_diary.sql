@@ -1,6 +1,6 @@
 USE diarydb;
 INSERT INTO diary
-(title,content,emotion)
+(title,content,em_id)
 VALUES
 ('제목 1','내용1','1')
 ,('제목 2','내용2','1')
