@@ -56,7 +56,7 @@
 <body>
 	<div class="top_container">
 	</div>
-	<form class="align_center" action="/todolist/src/05_delete.php" method="post">
+	<form action="/todolist/src/05_delete.php" method="post">
 		<div class="main_container">
 			<div class="main_container_box">
 				<div class="left_box">
@@ -74,22 +74,28 @@
 				<div class="right_box">
 					<div class="box_layout">
 						<div class="align_center date">
-							<img class="detail_emo" src="/todolist/doc/img/emotion_2.png">
-							<p class="align_center_date">2023년 10월 16일<br>
+							<img class="detail_emo" src="<?php echo IMG.$item['em_path']; ?>">
+							<p class="align_center_date"><?php echo $item['create_at']; ?><br>
 								금요일
 							</p>
 							<!-- php 데이터 연동 -->
 						</div>
 						<br>
 						<table class ="detail_table">
+							<thead>
+								<tr>
+									<td class ="detail_textarea_1">
+										<?php echo $item["title"]; ?>
+									</td>
+								</tr>
+							</thead>
 							<tr>
-								<td class ="detail_textarea_1">
-									<span><?php echo $item["title"] ?></span>
+								<td class ="detail_textarea_3">
 								</td>
 							</tr>
 							<tr>
 								<td class ="detail_textarea_2">
-									<span><?php echo $item["content"] ?></span>
+									<?php echo $item["content"]; ?>
 								</td>
 							</tr>
 						</table>
