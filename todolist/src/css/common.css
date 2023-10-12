@@ -418,9 +418,14 @@ a {
 }
 
 .emo {
-	width: 70px;
-	height: 70px;
-	margin: 10px 5px;
+    width: 70px;
+    height: 70px;
+    margin: 10px 5px;
+}
+.emo_1 {
+    width: 83px;
+    height: 83px;
+    margin: 8px 5px;
 }
 
 .emotion_each input[type="radio"] {
@@ -524,16 +529,17 @@ a {
 /* .post_it 삽입페이지랑 동일 */
 
 /* 각 이모션별 크기 */
+/* .emo 삽입페이지랑 동일 */
 .emotion_each {
-	width: 80px;
-	height: 80px;
-	/* margin: 10px 20px; */
-}
-.emotions {
 	width: 80px;
 	height: 80px;
 	margin: 10px 20px;
 }
+/* .emotions {
+	width: 80px;
+	height: 80px;
+	margin: 10px 20px;
+} */
 
 /* 이모션 radio effect */
 .emotion_each input[type="radio"] {
