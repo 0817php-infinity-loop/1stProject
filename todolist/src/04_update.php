@@ -78,7 +78,7 @@ $content = "";
 								<div class="emotion_lay3">
 									<label class="emotion_each" for="emotion8">
 									<input type="radio" name="emotion" id="emotion8" value="8">
-									<img class="emo_1" src="/todolist/doc/img/emotion_8.png">
+									<img class="emo" src="/todolist/doc/img/emotion_8.png">
 									</label>
 								</div>
 							</div>

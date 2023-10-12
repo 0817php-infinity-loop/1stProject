@@ -170,7 +170,7 @@ a {
 
 /* 메인페이지- 줌인 */
 .main_page_img img {
-	transition: all 0.2s linear;
+	transition: all 0.3s linear;
 }
 
 .main_page_img:hover img {

@@ -177,6 +177,94 @@ a {
 	transform: scale(1.4);
 }
 
+/* 메인페이지- 배경 */
+.bg_img_01 {
+	width: 90px;
+	height: 90px;
+	Position:absolute;
+	Top:80px;
+	left:320px;
+	/* animation: blink-effect 2s step-end infinite; 
+	Transition-delay:0.5s */
+}
+.bg_img_01 img {
+	width: 100%;
+	height: 100%;
+}
+.bg_img_02 {
+	width: 70px;
+	height: 70px;
+	Position:absolute;
+	Top:110px;
+	left:1000px;
+}
+.bg_img_02 img {
+	width: 100%;
+	height: 100%;
+}
+.bg_img_12 {
+	width: 35px;
+	height: 35px;
+	Position:absolute;
+	Top:100px;
+	left:950px;
+}
+.bg_img_12 img {
+	width: 100%;
+	height: 100%;
+}
+.bg_img_03 {
+	width: 110px;
+	height: 100px;
+	Position:absolute;
+	Top:150px;
+	right:420px;
+}
+.bg_img_03 img {
+	width: 100%;
+	height: 100%;
+}
+.bg_img_04 {
+	width: 80px;
+	height: 100px;
+	Position:absolute;
+	bottom:130px;
+	right:300px;
+}
+.bg_img_04 img {
+	width: 100%;
+	height: 100%;
+}
+.bg_img_05 {
+	width: 70px;
+	height: 90px;
+	Position:absolute;
+	top:530px;
+	right:220px;
+}
+.bg_img_05 img {
+	width: 100%;
+	height: 100%;
+}
+.bg_img_06 {
+	width: 80px;
+	height: 110px;
+	Position:absolute;
+	bottom:200px;
+	left:300px;
+}
+.bg_img_06 img {
+	width: 100%;
+	height: 100%;
+}
+
+/* 반짝이는 효과 */
+@keyframes blink-effect {
+	50% {
+	  opacity: 5%;
+	}
+  }
+
 /* 리스트페이지 */
 /* 리스트페이지 */
 .left_top {
