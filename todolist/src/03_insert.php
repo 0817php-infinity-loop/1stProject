@@ -72,7 +72,7 @@ if($http_method === "POST") {
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>삽입 페이지</title>
-	<link rel="stylesheet" href="/todolist/doc/design/css/common.css">	
+	<link rel="stylesheet" href="/todolist/src/css/common.css">	
 </head>
 <body>
 	<div class="top_container">
@@ -148,7 +148,7 @@ if($http_method === "POST") {
                 <div class="right_box">
                     <div class="box_layout">
                         <div class="align_center date">
-                            <img class="flower" src="/todolist/doc/img/flower_red.png">
+                            <img class="flower_Y" src="/todolist/doc/img/flower_red.png">
                             <p class="align_center_date">2023년 10월 16일<br>
                                 금요일
                             </p>
