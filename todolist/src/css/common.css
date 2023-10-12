@@ -390,6 +390,35 @@ a {
     width: 380px;
     height: 270px;
 }
+.detail_table{
+	margin: 0 auto;
+}
+.detail_textarea_1 {
+	width: 400px;
+	height: 50px;
+	padding: 20px;
+	background-color: #e6dfd4;
+	box-sizing: border-box;
+	border-radius: 10px;	
+	resize: none;
+	vertical-align:middle;
+	border: none;
+	font-size: 25px;
+}
+.detail_textarea_2 {
+	width: 400px;
+	height: 400px;
+	padding: 20px;
+	background-color: #e6dfd4;
+	box-sizing: border-box;
+	border-radius: 10px;	
+	resize: none;
+	vertical-align:middle;
+	border: none;
+	font-size: 20px;
+}
+
+
 
 /* 삽입페이지 */
 /* 삽입페이지 */
@@ -418,9 +447,14 @@ a {
 }
 
 .emo {
-	width: 70px;
-	height: 70px;
-	margin: 10px 5px;
+    width: 70px;
+    height: 70px;
+    margin: 10px 5px;
+}
+.emo_1 {
+    width: 83px;
+    height: 83px;
+    margin: 8px 5px;
 }
 
 .emo_1 {
@@ -538,16 +572,17 @@ a {
 /* .post_it 삽입페이지랑 동일 */
 
 /* 각 이모션별 크기 */
+/* .emo 삽입페이지랑 동일 */
 .emotion_each {
-	width: 80px;
-	height: 80px;
-	/* margin: 10px 20px; */
-}
-.emotions {
 	width: 80px;
 	height: 80px;
 	margin: 10px 20px;
 }
+/* .emotions {
+	width: 80px;
+	height: 80px;
+	margin: 10px 20px;
+} */
 
 /* 이모션 radio effect */
 .emotion_each input[type="radio"] {
