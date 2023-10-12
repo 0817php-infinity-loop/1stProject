@@ -14,10 +14,10 @@
 // ---------- < 2 > ----------
 
 function todolist_db_conn( &$conn ) {
-	$db_host	= "localhost"; // host
+	$db_host	= "192.168.0.77"; // host
 	$db_user	= "team1"; // user
 	$db_pw		= "team1"; // password
-	$db_name	= "todolist"; // DB name
+	$db_name	= "diarydb"; // DB name
 	$db_charset	= "utf8mb4"; // charset
 	$db_dns		= "mysql:host=".$db_host.";dbname=".$db_name.";charset=".$db_charset;
 

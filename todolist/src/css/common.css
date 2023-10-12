@@ -504,16 +504,17 @@ a {
 .emotion_each {
 	width: 80px;
 	height: 80px;
-	/* margin: 10px 20px; */
+	margin: 10px 20px;
+	
 }
 
 /* 포스트잇 안에 이모션 위치*/
-/* .emotions {
+.emotions {
 	padding-top: 100px;
-} */
+}
 
-/* 이모션 커서 위치 시 effect */
-/* .emotion_each {
+/* 감정표현 커서 위치 시 effect */
+.emotion_each {
 	-webkit-transform: scale(1);
 	transform: scale(1);
 	-webkit-transition: .5s ease-in-out;
@@ -526,64 +527,11 @@ a {
 .emotion_each:visited {
 	-webkit-transform: scale(1.3);
 	transform: scale(1.3);
-} */
+}
 
-/* 이모션 커서 선택 시 effect */
-/* .emotion_each:focus {
+/* 감정표현 커서 선택 시 effect */
+.emotion_each:focus {
 	transform:scale(1.3)
-} */
-
-/* 이모션 radio effect */
-.emotion_each input[type="radio"] {
-    display: none;
-}
-.emotion_each input[type="radio"]+img {
-    cursor: pointer;
-	-webkit-transform: scale(1);
-	transform: scale(1);
-	-webkit-transition: .5s ease-in-out;
-	transition: .5s ease-in-out;
-}
-.emotion_each:hover img{
-	-webkit-transform: scale(1.3);
-	transform: scale(1.3);
-}
-.emotion_each input[type="radio"]:checked+img {
-	-webkit-transform: scale(1.3);
-	transform: scale(1.3);
-}
-/* 이모션 위치 조절 */
-/* .emotion_lay1 {
-	padding-top: 100px;
-    width: 30%;
-    height: 30%;
-    float:left;
-}
-.emotion_lay2 {
-    padding-top: 60px;
-    width: 30%;
-    height: 30%;
-    float:left;
-}
-.emotion_lay3 {
-    padding-left: 70px;
-    padding-top: 20px;
-    width: 30%;
-    height: 30%;
-    float:left;
-} */
-.emotion_ma1 {
-	display:flex;
-	padding-top: 100px;
-	padding-left: 15px;
-}
-.emotion_ma2 {
-	display:flex;
-	padding-left: 15px;
-}
-.emotion_ma3 {
-	display:flex;
-	padding-left: 70px;
 }
 
 /* 꽃 이미지 effect */
