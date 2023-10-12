@@ -324,20 +324,16 @@ a {
 }
 
 .say {
-	height: 300px;
-	width: 300px;
-	position: absolute;
-	margin-top: 20px;
-	margin-left: 430px;
+	font-size: large;
+    line-height: 13;
+    text-align: center;
+    height: 210px;
+    width: 218px;
+    position: absolute;
+    margin-top: 20px;
+    margin-left: 374px;
 }
 
-.say {
-	height: 300px;
-	width: 300px;
-	position: absolute;
-	margin-top: 20px;
-	margin-left: 430px;
-}
 
 .calender {
     z-index: 1;
