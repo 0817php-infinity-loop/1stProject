@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>삽입 페이지</title>
+	<title>수정 페이지</title>
 	<link rel="stylesheet" href="/todolist/doc/design/css/common.css">	
 </head>
 <body>
@@ -15,22 +15,21 @@
 			<div class="left_box">
 				<div class="box_layout">
 					<div class="post_it">
-						<div class="emoticon_1">
-							<a class="emoticon_2" href="#"><img class="emo" src="../img/emotion_1.png"></a>
-							<a class="emoticon_2" href="#"><img class="emo" src="../img/emotion_2.png"></a>
-							<a class="emoticon_2" href="#"><img class="emo" src="../img/emotion_3.png"></a>
-							<!-- #으로 링크되어 있는 주소에서 a:visited 스타일 적용 안됨/반드시 css 확인할 것 -->
-						</div>
-						<div>
-							<a class="emoticon_2" href="#"><img class="emo" src="../img/emotion_4.png"></a>
-							<a class="emoticon_2" href="#"><img class="emo" src="../img/emotion_5.png"></a>
-							<a class="emoticon_2" href="#"><img class="emo" src="../img/emotion_6.png"></a>
-							<!-- #으로 링크되어 있는 주소에서 a:visited 스타일 적용 안됨/반드시 css 확인할 것 -->
-						</div>
-						<div>
-							<a class="emoticon_2" href="#"><img class="emo" src="../img/emotion_7.png"></a>
-							<a class="emoticon_2" href="#"><img class="emo" src="../img/emotion_8.png"></a>
-							<!-- #으로 링크되어 있는 주소에서 a:visited 스타일 적용 안됨/반드시 css 확인할 것 -->
+						<div class="emotions">
+							<div>
+								<input type="image" class="emotion_each" name="emotion_each" src="../img/emotion_1.png">
+								<input type="image" class="emotion_each" name="emotion_each" src="../img/emotion_2.png">
+								<input type="image" class="emotion_each" name="emotion_each" src="../img/emotion_3.png">
+							</div>
+							<div>
+								<input type="image" class="emotion_each" name="emotion_each" src="../img/emotion_4.png">
+								<input type="image" class="emotion_each" name="emotion_each" src="../img/emotion_5.png">
+								<input type="image" class="emotion_each" name="emotion_each" src="../img/emotion_6.png">
+							</div>
+							<div>
+								<input type="image" class="emotion_each" name="emotion_each" src="../img/emotion_7.png">
+								<input type="image" class="emotion_each" name="emotion_each" src="../img/emotion_8.png">
+							</div>
 						</div>
 					</div>
 					<div class="align_center">
@@ -42,11 +41,10 @@
 			<div class="right_box">
 				<div class="box_layout">
 					<div class="align_center date">
-						<img class="flower" src="../img/flower_yellow.png">
+						<img class="flower_Y" src="../img/flower_yellow.png">
 						<p class="align_center_date">2023년 10월 16일<br>
 							금요일
 						</p>
-						<!-- php 데이터 연동 -->
 					</div>
 					<br>
 					<form class="align_center" action="" method="post">						
