@@ -127,29 +127,56 @@ a {
 
 /* 메인페이지 */
 /* 메인페이지 */
-
-/* .main_left, .main_right {
-	float: left;
-	width: 50%;
-	height: 100%;
-}
-
-.main_img {
-	width: 100%;
-	height: 100%;
-} */
-
 .item {
 	width: 100%;
-	height: 800px;
-	border:1px solid #000;
+	height: 650px;
 }
 
-.item_left {
+.item_left img, .item_center img, .item_right img{
+	height: 100%;
+	background-size: cover;
+	background-repeat: no-repeat;
+	margin-top:100px;
+}
+
+.item_left img {
+	width: 30%;
+	float:left;
+}
+
+.item_center img {
+	width: 70%;
+}
+
+.item_right img {
+	width: 30%;
+	float:right;
+}
+
+.item_left, .item_center, .item_right {
+	float: left;
+}
+
+.item_left, .item_right {
 	width: 20%;
 	height: 100%;
-	border: 1px solid #000;
 }
+
+.item_center {
+	width: 60%;
+	height: 100%;
+	text-align: center;
+}
+
+/* 메인페이지- 줌인 */
+.main_page_img img {
+	transition: all 0.2s linear;
+}
+
+.main_page_img:hover img {
+	transform: scale(1.4);
+}
+
 /* 리스트페이지 */
 /* 리스트페이지 */
 .left_top {
