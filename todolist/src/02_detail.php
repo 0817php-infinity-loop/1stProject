@@ -14,7 +14,7 @@
 			$id = $_GET["id"]; // id 셋팅
 		
 			// DB 연결
-			if(!todolist_db_conn($conn)) {
+			if(!db_conn($conn)) {
 				// DB Instance 에러
 				throw new Exception("DB Error : PDO Instance");
 			}
@@ -22,7 +22,7 @@
 				$arr_param = [
 					"id" => $id
 				];    
-			   $result = todolist_db_select_boards_id($conn, $arr_param); 
+			   $result = db_select_boards_id($conn, $arr_param); 
 			
 			   // 게시글 조회 예외처리
 			   if($result === false ) {
@@ -38,10 +38,10 @@
 				echo $e->getMessage();
 				exit;
 			} finally {
-			   todolist_db_destroy_conn($conn); // DB 파기
+			   db_destroy_conn($conn); // DB 파기
 			}
 			
-			$page = $_GET["page"];
+			// $page = $_GET["page"];
 ?>
 
 
@@ -51,7 +51,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>상세 페이지</title>
-	<link rel="stylesheet" href="/todolist/doc/design/css/common.css"> 
+	<link rel="stylesheet" href="/todolist/src/css/common.css"> 
 </head>
 <body>
 	<div class="top_container">
@@ -81,13 +81,18 @@
 							<!-- php 데이터 연동 -->
 						</div>
 						<br>
-						<form class="align_center" action="" method="post">						
-							<label for="title"></label>
-							<input type="text" class ="textarea_1" name="title" id="title" maxlength="20" value="과연">
-							<br><br>
-							<label for="content"></label>
-							<textarea class ="textarea_2" name="content" id="content" cols="25" rows="10">내가</textarea>
-						</form>
+						<table class ="detail_table">
+							<tr>
+								<td class ="detail_textarea_1">
+									<span><?php echo $item["title"] ?></span>
+								</td>
+							</tr>
+							<tr>
+								<td class ="detail_textarea_2">
+									<span><?php echo $item["content"] ?></span>
+								</td>
+							</tr>
+						</table>
 					</div>
 				</div>
 

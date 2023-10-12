@@ -390,6 +390,35 @@ a {
     width: 380px;
     height: 270px;
 }
+.detail_table{
+	margin: 0 auto;
+}
+.detail_textarea_1 {
+	width: 400px;
+	height: 50px;
+	padding: 20px;
+	background-color: #e6dfd4;
+	box-sizing: border-box;
+	border-radius: 10px;	
+	resize: none;
+	vertical-align:middle;
+	border: none;
+	font-size: 25px;
+}
+.detail_textarea_2 {
+	width: 400px;
+	height: 400px;
+	padding: 20px;
+	background-color: #e6dfd4;
+	box-sizing: border-box;
+	border-radius: 10px;	
+	resize: none;
+	vertical-align:middle;
+	border: none;
+	font-size: 20px;
+}
+
+
 
 /* 삽입페이지 */
 /* 삽입페이지 */
