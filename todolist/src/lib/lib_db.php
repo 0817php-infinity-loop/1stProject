@@ -62,7 +62,7 @@
 				."		dia.id "
 				."		,dia.title "
 				."		,dia.content "
-				."		,cast(dia.create_at as date) "
+				."		,cast(dia.create_at as date) as create_at "
 				."		,emo.em_path "
 				." FROM "
 				." 		diary AS dia "
