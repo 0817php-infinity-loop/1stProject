@@ -82,14 +82,20 @@
 						</div>
 						<br>
 						<table class ="detail_table">
+							<thead>
+								<tr>
+									<td class ="detail_textarea_1">
+										<?php echo $item["title"]; ?>
+									</td>
+								</tr>
+							</thead>
 							<tr>
-								<td class ="detail_textarea_1">
-									<span><?php echo $item["title"]; ?></span>
+								<td class ="detail_textarea_3">
 								</td>
 							</tr>
 							<tr>
 								<td class ="detail_textarea_2">
-									<span><?php echo $item["content"]; ?></span>
+									<?php echo $item["content"]; ?>
 								</td>
 							</tr>
 						</table>
