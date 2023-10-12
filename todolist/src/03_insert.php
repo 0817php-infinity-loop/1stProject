@@ -9,6 +9,7 @@ $http_method = $_SERVER["REQUEST_METHOD"]; // Method 확인
 $arr_err_msg = []; // 에러 메세지 저장용
 $title = "";
 $content = "";
+$emotion = "";
 
 if($http_method === "POST") {
 	try {
@@ -17,7 +18,8 @@ if($http_method === "POST") {
 
 		$title = isset($_POST["title"]) ? trim($_POST["title"]) : ""; //title 셋팅
 		$content = isset($_POST["content"]) ? trim($_POST["content"]) : "";
-		
+		$emotion = isset($_POST["emotion"]) ? trim($_POST["emotion"]) : "";
+		var_dump($_POST);
 		if($title === "") {
 			$arr_err_msg[] = sprintf(ERROR_MSG_PARAM, "[제목]");
 		}
@@ -37,6 +39,7 @@ if($http_method === "POST") {
 		$arr_param = [
 			"title" => $_POST["title"]
 			,"content" => $_POST["content"]
+			,"imotion" => $_POST["emotion"]
 		];
 
 		// insert
@@ -75,69 +78,105 @@ if($http_method === "POST") {
 	<div class="top_container">
 
 	</div>
-	<div class="main_container">
-		<div class="main_container_box">
-			<div class="left_box">
-				<div class="box_layout">
-					<form action="" method="post">
-						<div class="post_it">
-							<div class="emoticon_1">
-								<button class="emoticon_2" value="1"><img class="emo" src="/todolist/doc/img/emotion_1.png"></button>
-								<button class="emoticon_2" value="2"><img class="emo" src="/todolist/doc/img/emotion_2.png"></button>
-								<button class="emoticon_2" value="3"><img class="emo" src="/todolist/doc/img/emotion_3.png"></button>
-								<!-- #으로 링크되어 있는 주소에서 a:visited 스타일 적용 안됨/반드시 css 확인할 것 -->
-							</div>
-							<div>
-								<button class="emoticon_2" value="4"><img class="emo" src="/todolist/doc/img/emotion_4.png"></button>
-								<button class="emoticon_2" value="5"><img class="emo" src="/todolist/doc/img/emotion_5.png"></button>
-								<button class="emoticon_2" value="6"><img class="emo" src="/todolist/doc/img/emotion_6.png"></button>
-								<!-- #으로 링크되어 있는 주소에서 a:visited 스타일 적용 안됨/반드시 css 확인할 것 -->
-							</div>
-							<div>
-								<button class="emoticon_2" value="7"><img class="emo" src="/todolist/doc/img/emotion_7.png"></button>
-								<button class="emoticon_2" value="8"><img class="emo" src="/todolist/doc/img/emotion_8.png"></button>
-								<!-- #으로 링크되어 있는 주소에서 a:visited 스타일 적용 안됨/반드시 css 확인할 것 -->
-							</div>
-						</div>
-					</form>
-					<div class="align_center">
-						<p class="align_center_txt">감정을 선택해 주세요 !</p>
-					</div>
-				</div>
-			</div>
-				
-			<div class="right_box">
-				<div class="box_layout">
-					<div class="align_center date">
-						<img class="flower" src="/todolist/doc/img/flower_red.png">
-						<p class="align_center_date">2023년 10월 16일<br>
-							금요일
-						</p>
-						<!-- php 데이터 연동 -->
-					</div>
-					<br>
-					<form class="align_center" action="" method="post">						
-						<label for="title"></label>
-						<input type="text" class = 'textarea_1' name="title" id="title" value="<?php echo $title; ?>" 
-						maxlength="20" placeholder="제목을 작성해주세요.">
-						<!-- value="title" id 뒤에 설정하기 -->
-						<br><br>
-						<label for="content"></label>
-						<textarea class = 'textarea_2' name="content" id="content" cols="25" rows="10"
-						placeholder="내용을 작성해주세요."><?php echo $content; ?></textarea>						
-					</form>
-				</div>
-			</div>
 
-			<div class="side_box">
-				<div class="side_category bgc_cate1">
-					<button class= "side_text button_text" href="/todolist/doc/design/03_insert.html">작성</button>
-				</div>
-				<div class="side_category bgc_cate3">
-					<a class= "side_text" href="/todolist/doc/design/01_list.html">취소</a>
-				</div>				
-			</div>
-		</div>
-	</div>
+	<form action="" method="post">
+        <div class="main_container">
+            <div class="main_container_box">
+                <div class="left_box">
+                    <div class="box_layout">
+                        <div class="post_it">
+                            <div class="emotion_ma1">
+                                <div class="emotion_lay1">
+                                    <label class="emotion_each" for="emotion1">
+                                    <input type="radio" name="emotion" id="emotion1" value="1">
+                                    <img class="emo" src="/todolist/doc/img/emotion_1.png">
+                                    </label>
+                                </div>
+                                <div class="emotion_lay1">
+                                    <label class="emotion_each" for="emotion2">
+                                    <input style="zoom:2.0;" type="radio" name="emotion" id="emotion2" value="2">
+                                    <img class="emo" src="/todolist/doc/img/emotion_2.png">
+                                    </label>
+                                </div>
+                                <div class="emotion_lay1">
+                                    <label class="emotion_each" for="emotion3">
+                                    <input type="radio" name="emotion" id="emotion3" value="3">
+                                    <img class="emo" src="/todolist/doc/img/emotion_3.png">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="emotion_ma2">
+                                <div class="emotion_lay2">
+                                    <label class="emotion_each" for="emotion4">
+                                    <input type="radio" name="emotion" id="emotion4" value="4">
+                                    <img class="emo" src="/todolist/doc/img/emotion_4.png">
+                                    </label>
+                                </div>
+                                <div class="emotion_lay2">
+                                    <label class="emotion_each" for="emotion5">
+                                    <input type="radio" name="emotion" id="emotion5" value="5">
+                                    <img class="emo" src="/todolist/doc/img/emotion_5.png">
+                                    </label>
+                                </div>
+                                <div class="emotion_lay2">
+                                    <label class="emotion_each" for="emotion6">
+                                    <input type="radio" name="emotion" id="emotion6" value="6">
+                                    <img class="emo" src="/todolist/doc/img/emotion_6.png">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="emotion_ma3">
+                                <div class="emotion_lay3">
+                                    <label class="emotion_each" for="emotion7">
+                                    <input type="radio" name="emotion" id="emotion7" value="7">
+                                    <img class="emo" src="/todolist/doc/img/emotion_7.png">
+                                    </label>
+                                </div>
+                                <div class="emotion_lay3">
+                                    <label class="emotion_each" for="emotion8">
+                                    <input type="radio" name="emotion" id="emotion8" value="8">
+                                    <img class="emo" src="/todolist/doc/img/emotion_8.png">
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="align_center">
+                                <p class="align_center_txt">감정을 선택해 주세요 !</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="right_box">
+                    <div class="box_layout">
+                        <div class="align_center date">
+                            <img class="flower" src="/todolist/doc/img/flower_red.png">
+                            <p class="align_center_date">2023년 10월 16일<br>
+                                금요일
+                            </p>
+                            <!-- php 데이터 연동 -->
+                        </div>
+                        <br>
+						<div class="align_center">
+							<label for="title"></label>
+							<input type="text" class = "textarea_1" name="title" id="title" value="<?php echo $title; ?>"
+							maxlength="20" placeholder="제목을 작성해주세요.">
+							<!-- value="title" id 뒤에 설정하기 -->
+							<br><br>
+							<label for="content"></label>
+							<textarea class = "textarea_2" name="content" id="content" cols="25" rows="10"
+							placeholder="내용을 작성해주세요."><?php echo $content; ?></textarea>
+						</div>
+                    </div>
+                </div>
+                <div class="side_box">
+                    <div class="side_category bgc_cate1">
+                        <button class= "side_text button_text" href="/todolist/doc/design/03_insert.php">작성</button>
+                    </div>
+                    <div class="side_category bgc_cate3">
+                        <a class= "side_text" href="/todolist/doc/design/01_list.html">취소</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
 </body>
 </html>
