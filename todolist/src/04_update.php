@@ -17,7 +17,7 @@ $content = "";
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>수정 페이지</title>
-	<link rel="stylesheet" href="/todolist/doc/design/css/common.css">	
+	<link rel="stylesheet" href="/todolist/src/css/common.css">	
 </head>
 <body>
 	<div class="top_container">
@@ -131,11 +131,11 @@ $content = "";
 						<!-- 수정 버튼 클릭 시 수정
                              post > update.php
                             게시글의 id를 이용해서 update -->
-                        <button class= "side_text button_text" href="/todolist/doc/design/04_update.php">수정</button>
+                        <button class= "side_text button_text" href="/todolist/src/04_update.php">수정</button>
                     </div>
                     <div class="side_category bgc_cate3">
 						<!-- 취소 버튼 클릭 시 디테일 페이지로 이동 -->
-                        <a class= "side_text" href="/todolist/doc/design/02_detail.php">취소</a>
+                        <a class= "side_text" href="/todolist/src/02_detail.php">취소</a>
                     </div>
                 </div>
             </div>
