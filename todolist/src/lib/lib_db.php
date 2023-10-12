@@ -61,6 +61,7 @@
 				" SELECT "
 				."		dia.id "
 				."		,dia.title "
+				."		,dia.content "
 				."		,cast(dia.create_at as date) "
 				."		,emo.em_path "
 				." FROM "
