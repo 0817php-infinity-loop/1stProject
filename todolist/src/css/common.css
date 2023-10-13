@@ -620,7 +620,7 @@ a {
 
 .emotion_each input[type="radio"]+img {
 	cursor: pointer;
-	border: 1px solid transparent;
+	/* border: 1px solid transparent; */
 	border-radius: 80%;
     -webkit-transform: scale(1);
     transform: scale(1);
