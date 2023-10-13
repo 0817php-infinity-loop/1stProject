@@ -38,6 +38,8 @@
 			   }
 					
 			   $item = $result[0];
+			   $arr = explode('-', $item['create_at']);
+			   $print_date = $arr[0]."년 ".$arr[1]."월 ".$arr[2]."일";
 
 			} catch(Exception $e) {
 				echo $e->getMessage();
@@ -85,7 +87,7 @@
 					<div class="box_layout">
 						<div class="align_center date">
 							<img class="detail_emo" src="<?php echo IMG.$item['em_path']; ?>">
-							<p class="align_center_date"><?php echo $item['create_at']; ?></p>
+							<p class="align_center_date"><?php echo $print_date; ?></p>
 							<p class="align_center_date"><?php echo $item_yoil ?></p>
 							<br>
 							<!-- php 데이터 연동 -->
