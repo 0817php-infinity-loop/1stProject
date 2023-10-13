@@ -197,29 +197,32 @@
 	//			Array	&$arr_param
     // 리턴 : Boolean
     // ------------------------
+
 	function db_update_boards_id(&$conn, &$arr_param) {
 		try {
 			$sql = 
-			" UPDATE boards "
-			." SET "
-			."		b_title=:b_title "
-			."		,b_content=:b_content "
+			" UPDATE " 
+			."		diary "
+			." SET " 
+			." 		title = :title "
+			.", 	content = :content "
+			.", 	em_id = :em_id "
 			." WHERE "
-			."		b_id=:b_id "
+			." 		id = :id "
 			;
-
+		// prepare 설정 준비
 			$arr_ps = [
-				":b_id" => $arr_param["b_id"]
-				,":b_title" => $arr_param["b_title"]
-				,":b_content" => $arr_param["b_content"]
+				":title" => $arr_param["title"]
+				,":content" => $arr_param["content"]
+				,":em_id" => $arr_param["em_id"]
 			];
 			
 			$stmt = $conn->prepare($sql);
 			$result = $stmt->execute($arr_ps);
 			return $result;
 		} catch (Exception $e) {
-			echo $e->getMessage();
-			return false;
+			echo $e->getMessage(); // Exception 메세지 출력
+			return false; // 예외발생 : false 리턴
 		}
 	}
 

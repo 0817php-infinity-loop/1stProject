@@ -1,14 +1,128 @@
 <?php
 define("ROOT", $_SERVER["DOCUMENT_ROOT"]."/todolist/src/"); // 웹서버 root 패스 생성
 define("ERROR_MSG_PARAM", "⛔ %s을 입력해 주세요."); //파라미터 에러 메세지
+define("ERROR_MSG_PARAM2", "⛔ %s을 클릭해 주세요."); //파라미터 에러 메세지
 require_once(ROOT."lib/lib_db.php");// DB관련 라이브러리
+
+// update page : 
+//              왼) 수정할 이모션 선택 시 값 보내기
+//              오) 작성일자(월, 일, 요일 - 수정x), 제목, 내용 
+
+// 120라인 error메시지 출력 페이지 업서요 ~~
 
 $conn = null; // DB 연결용 변수
 $http_method = $_SERVER["REQUEST_METHOD"]; // Method 확인
 $arr_err_msg = []; // 에러 메세지 저장용
 $title = "";
 $content = "";
+$em_id = "";
+$yoil = array("일요일","월요일","화요일","수요일","목요일","금요일","토요일"); //요일 출력하기 위한 세팅
 
+try { 
+    // DB 접속
+    if(!db_conn($conn)) {
+        // DB Instance 에러
+        throw new Exception("DB Error : PDO Instance"); // 강제 예외 발생
+    }
+
+    // 사용자가 처리할 수 없는 에러
+    if($http_method === "GET") {
+        $id = isset($_GET["id"]) ? $_GET["id"] : $_POST["id"]; // id 세팅
+        $page = isset($_GET["page"]) ? $_GET["page"] : $_POST["page"]; // page 세팅
+        
+        if($id === "") {
+			$arr_err_msg[] = sprintf(ERROR_MSG_PARAM, "id");
+		}
+		if($page === "") {
+			$arr_err_msg[] = sprintf(ERROR_MSG_PARAM, "page");
+		}
+		if($page === "") {
+			$arr_err_msg[] = sprintf(ERROR_MSG_PARAM2, "emotion");
+		}
+        if(count($arr_err_msg) >= 1) {
+			throw new Exception(implode("<br>", $arr_err_msg));
+		}
+        // 사용자가 처리할 수 있는 에러
+        } else {
+            // POST Method
+            // 게시글 수정을 위해 파라미터 세팅
+            $id = isset($_GET["id"]) ? $_GET["id"] : $_POST["id"]; // id 세팅
+            $page = isset($_GET["page"]) ? $_GET["page"] : $_POST["page"]; // page 세팅
+            $title = trim(isset($_POST["title"]) ? trim($_POST["title"]) : ""); // title 세팅
+		    $content = trim(isset($_POST["content"]) ? trim($_POST["content"]) : ""); // content 세팅
+		    $em_id = trim(isset($_POST["em_id"]) ? trim($_POST["em_id"]) : ""); // em_id 세팅
+
+            if($id === "") {
+                $arr_err_msg[] = sprintf(ERROR_MSG_PARAM, "id");
+            }
+            if($page === "") {
+                $arr_err_msg[] = sprintf(ERROR_MSG_PARAM, "page");
+            }
+            if(count($arr_err_msg) >= 1) {
+                throw new Exception(implode("<br>", $arr_err_msg));
+            }
+            if($title === "") {
+                $arr_err_msg[] = sprintf(ERROR_MSG_PARAM, "제목");
+            }
+            if($content === "") {
+                $arr_err_msg[] = sprintf(ERROR_MSG_PARAM, "내용");
+            }
+            if($em_id === "") {
+                $arr_err_msg[] = sprintf(ERROR_MSG_PARAM, "감정");
+            }
+
+            // 에러 메세지가 없을 경우에 업데이트 처리
+            if(count($arr_err_msg) === 0) {
+                // 데이터 무결성
+                $arr_param = [
+                    "id" => $id
+                    ,"title" => $title
+                    ,"content" => $content 
+                    ,"em_id" => $em_id 
+                    // ,"title" => $_POST["title"]
+                    // ,"content" => $_POST["content"]
+                ];
+
+                // 게시글 수정 처리 POST Method 일 경우에만 트랜잭션 시작 
+                $conn->beginTransaction(); // 트랜잭션 시작
+
+                if(!db_update_boards_id($conn, $arr_param)) {
+                    // DB  Update_Boards 에러
+                    throw new Exception("DB Error : Update_Boards_id");
+                }
+                $conn->commit(); // commit
+
+                // 게시글 수정 했을 경우 detail page로 이동
+                header("Location: 03_detail.php/?id={$id}&page={$page}"); 
+                exit;
+                }                                                    
+            }
+            // 게시글 데이터 조회를 위한 파라미터 셋팅
+		$arr_param = [
+			"id" => $id
+		];
+
+		// 게시글 데이터 조회
+		$result = db_select_boards_id($conn, $arr_param);
+		// 게시글 조회 예외처리
+		if($result === false) {
+			// 게시글 조회 에러
+			throw new Exception("DB Error : PDO Select_id");
+		} else if(!(count($result) === 1)) {
+			// 게시글 조회 count 에러
+			throw new Exception("DB Error : PDO Select_id Count, ".count($result));
+		}
+		$item = $result[0];
+    } catch(Exception $e) {
+        if($http_method === "POST") {
+            $conn->rollBack(); // rollback
+        }
+        // echo $e->getMessage(); // 예외 발생 메시지 출력
+                header("Location: 06_error.php/?err_msg={$e->getMessage()}");
+        exit; // 처리 종료
+    } finally {
+        db_destroy_conn($conn); // DB 파기
+    }
 ?>
 
 <!DOCTYPE html>
@@ -20,9 +134,23 @@ $content = "";
 	<link rel="stylesheet" href="/todolist/src/css/common.css">	
 </head>
 <body>
+	<div class="error_up">
+        <?php
+            require_once(FILE_HEADER);
+        ?>
+        <?php 
+                foreach($arr_err_msg as $val) {
+            ?>
+                <P><?php echo $val ?></P>
+            <?php
+                }
+            ?>
+    </div>
 	<div class="top_container">
 	</div>
-	<form action="" method="post">
+	<form action="/todolist/src/04_update.php" method="post">
+		<input type="hidden" name="id" value="<?php echo $id ?>">
+        <input type="hidden" name="page" value="<?php echo $page ?>">
         <div class="main_container">
             <div class="main_container_box">
                 <div class="left_box">
@@ -82,22 +210,6 @@ $content = "";
 									</label>
 								</div>
 							</div>
-						<!-- <div class="emotions">
-								<div>
-									<input type="image" class="emotion_each" name="emotion_each" src="../img/emotion_1.png">
-									<input type="image" class="emotion_each" name="emotion_each" src="../img/emotion_2.png">
-									<input type="image" class="emotion_each" name="emotion_each" src="../img/emotion_3.png">
-								</div>
-								<div>
-									<input type="image" class="emotion_each" name="emotion_each" src="../img/emotion_4.png">
-									<input type="image" class="emotion_each" name="emotion_each" src="../img/emotion_5.png">
-									<input type="image" class="emotion_each" name="emotion_each" src="../img/emotion_6.png">
-								</div>
-								<div>
-									<input type="image" class="emotion_each" name="emotion_each" src="../img/emotion_7.png">
-									<input type="image" class="emotion_each" name="emotion_each" src="../img/emotion_8.png">
-								</div>
-							</div> -->
                         </div>
                         <div class="align_center">
                                 <p class="align_center_txt">감정을 수정해 주세요 !</p>
@@ -117,7 +229,7 @@ $content = "";
                         <!-- <form class="align_center" action="" method="post"> -->
                         <div class="align_center">
                             <label for="title"></label>
-                            <input type="text" class = 'text_tit' name="title" id="title" value="<?php echo $title; ?>"
+                            <input type="text" class = 'text_tit' name="title" id="title" value="<?php echo $item["title"] ?>"
                             maxlength="20">
                             <!-- value="title" id 뒤에 설정하기 -->
                             <br><br>
