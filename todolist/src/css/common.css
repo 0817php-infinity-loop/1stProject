@@ -177,6 +177,94 @@ a {
 	transform: scale(1.4);
 }
 
+/* 메인페이지- 배경 */
+.bg_img > div {
+	Position:absolute;
+	animation:blink-effect 2s linear infinite; 
+}
+.bg_img_01 {
+	width: 90px;
+	height: 90px;
+	Top:80px;
+	left:320px;
+	animation-delay:2s !important;
+}
+.bg_img_01 img {
+	width: 100%;
+	height: 100%;
+}
+.bg_img_02 {
+	width: 80px;
+	height: 70px;
+	Top:110px;
+	left:1000px;
+}
+.bg_img_02 img {
+	width: 100%;
+	height: 100%;
+}
+.bg_img_12 {
+	width: 35px;
+	height: 35px;
+	Top:100px;
+	left:950px;
+}
+.bg_img_12 img {
+	width: 100%;
+	height: 100%;
+}
+.bg_img_03 {
+	width: 110px;
+	height: 100px;
+	Top:150px;
+	right:420px;
+	animation-delay:7s !important;
+}
+.bg_img_03 img {
+	width: 100%;
+	height: 100%;
+}
+.bg_img_04 {
+	width: 80px;
+	height: 100px;
+	bottom:130px;
+	right:300px;
+}
+.bg_img_04 img {
+	width: 100%;
+	height: 100%;
+}
+.bg_img_05 {
+	width: 70px;
+	height: 90px;
+	top:530px;
+	right:220px;
+	animation-delay:5s !important;
+}
+.bg_img_05 img {
+	width: 100%;
+	height: 100%;
+}
+.bg_img_06 {
+	width: 80px;
+	height: 110px;
+	bottom:200px;
+	left:300px;
+	animation-delay:11s !important;
+}
+.bg_img_06 img {
+	width: 100%;
+	height: 100%;
+}
+
+/* 반짝이는 효과 */
+@keyframes blink-effect {
+	50% {
+	  opacity: 5%;
+	}
+  }
+
+
 /* 리스트페이지 */
 /* 리스트페이지 */
 .left_top {
@@ -390,7 +478,7 @@ a {
     width: 380px;
     height: 270px;
 }
-.detail_table{
+.detail_delete_table{
 	margin: -2px auto;
 }
 .detail_textarea_1 {
@@ -778,4 +866,33 @@ a {
 
 .layout_delete_bottom img {
 	float:right;
+}
+
+.delete_textarea_1 {
+	width: 400px;
+	height: 50px;
+	padding: 12px 0px 10px 20px;
+	background-color: #e6dfd4;
+	box-sizing: border-box;
+	border-radius: 10px;	
+	resize: none;
+	vertical-align:middle;
+	border: none;
+	font-size: 25px;
+}
+.delete_textarea_2 {
+	width: 400px;
+	height: 400px;
+	padding: 20px;
+	background-color: #e6dfd4;
+	box-sizing: border-box;
+	border-radius: 10px;	
+	resize: none;
+	vertical-align:top;
+	border: none;
+	font-size: 20px;
+}
+
+.delete_textarea_3{
+	padding: 5.5px 0px;
 }
