@@ -4,11 +4,11 @@
 		require_once(ROOT."lib/lib_db.php");
 		
 		try {
-			// 2. DB Connect
-			// 2-1 connection 함수 호출
+			// DB Connect
+			// connection 함수 호출
 			$conn = null;
 			if(!db_conn($conn)) {
-				// 2-2. 예외 처리
+				// 예외 처리
 				throw new Exception("DB Error : PDO Instance");
 			}
 	
@@ -16,8 +16,8 @@
 			$http_method = $_SERVER["REQUEST_METHOD"];
 	
 			if($http_method === "GET") {
-				// 3-1. GET 일 경우
-				// 3-1-1. 파라미터에서 id 획득
+				//  GET 일 경우
+				//  파라미터에서 id 획득
 				$id = isset($_GET["id"]) ? $_GET["id"] : "";
 				$page = isset($_GET["page"]) ? $_GET["page"] : "";
 				$arr_err_msg = [];
@@ -32,7 +32,7 @@
 				}
 			
 	
-				//3-1-2. 게시글 정보 획득
+				// 게시글 정보 획득
 				$arr_param = [
 					"id" => $id
 				];
@@ -40,36 +40,38 @@
 
 				$result = db_select_boards_id($conn, $arr_param);
 	
-				// 3-1-3. 예외 처리
+				// 예외 처리
 				if($result === false) {
 					throw new Exception("DB Error : Select id");
 				} else if(!(count($result) === 1)) {
 					throw new  Exception("DB Error : Select id count");
 				}
+				// 날짜 출력
 				$item = $result[0];
 				$arr = explode('-', $item['create_at']);
 				$print_date = $arr[0]."년 ".$arr[1]."월 ".$arr[2]."일";
 	
 			} else {
-				// 3-2. POST일 경우
+				// POST일 경우
 				$id = isset($_POST["id"]) ? $_POST["id"] : "";
 				$arr_err_msg = [];
 				if($id === "") {
 				 $arr_err_msg[] = "Parameter Error : id";
 				}
-			//3-2-2. Transaction 시작
+			// Transaction 시작
 			$conn->beginTransaction();
 			
-			//3-2-3. 게시글 정보 삭제
+			// 게시글 정보 삭제
 			$arr_param = [
 				"id" => $id
 			];
 			
-			// 3-2-3. 예외 처리
+			// 예외 처리
 			if(!db_delete_boards_id($conn, $arr_param)) {
 				throw new Exception("DB Error : Delete Boards id");
 			}
 			$conn->commit(); // commit
+			// 삭제후 리스트 페이지로 이동
 			header("Location: 01_list.php");
 			exit;
 		
@@ -123,7 +125,6 @@
 							<img class="detail_emo" src="<?php echo IMG.$item['em_path']; ?>">
 							<p class="align_center_date"><?php echo $print_date; ?><br>
 							</p>
-							<!-- php 데이터 연동 -->
 						</div>
 						<br>					
 						<table class ="detail_delete_table">

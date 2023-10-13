@@ -49,7 +49,6 @@
 			}
 			$yoil = array("일요일","월요일","화요일","수요일","목요일","금요일","토요일");
 			$item_yoil=$yoil[date('w', strtotime($item['create_at']))];
-			// $page = $_GET["page"];
 ?>
 
 
@@ -90,7 +89,6 @@
 							<p class="align_center_date"><?php echo $print_date; ?></p>
 							<p class="align_center_date"><?php echo $item_yoil ?></p>
 							<br>
-							<!-- php 데이터 연동 -->
 						</div>
 						<br>
 						<table class ="detail_delete_table">
