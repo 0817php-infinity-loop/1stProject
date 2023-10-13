@@ -6,8 +6,8 @@ define("ERROR_MSG_PARAM2", "⛔ %s을 클릭해 주세요."); //파라미터 에
 require_once(ROOT."lib/lib_db.php");// DB관련 라이브러리
 
 // update page : 
-//              왼) 수정할 이모션 선택 시 값 보내기
-//              오) 작성일자(월, 일, 요일⭕ - 수정x), 제목⭕, 내용⭕
+//              왼) 수정할 이모션 선택 시 값 보내기⭕
+//              오) 작성일자(월, 일, 요일 - 수정x)⭕, 제목⭕, 내용⭕
 
 // 120라인 error메시지 출력 페이지 업서요 ~~
 
@@ -116,6 +116,9 @@ try {
 		throw new Exception("DB Error : PDO Select_id Count, ".count($result));
 	}
 	$item = $result[0];
+	// 0000-00-00 -> 0000년 00월 00일로 출력
+	$arr = explode ("-", $item["create_at"]);
+	$pirnt_date = $arr[0]."년 ".$arr[1]."월 ".$arr[2]."일";
 } catch(Exception $e) {
 	if($http_method === "POST") {
 		$conn->rollBack(); // rollback
@@ -237,7 +240,7 @@ try {
                         <div class="align_center date">
                             <img class="flower_y" src="/todolist/doc/img/flower_yellow.png">
 							<!-- 년, 월, 일 출력 -->
-                            <p class="align_center_date"><?php echo $item["create_at"]; ?><br> 
+                            <p class="align_center_date"><?php echo $pirnt_date ?><br> 
 							<!-- 요일 출력 -->
 							<?php
 								foreach ($result as $item) {
