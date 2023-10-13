@@ -6,7 +6,7 @@ require_once(ROOT."lib/lib_db.php");// DB관련 라이브러리
 
 // update page : 
 //              왼) 수정할 이모션 선택 시 값 보내기
-//              오) 작성일자(월, 일, 요일 - 수정x), 제목, 내용 
+//              오) 작성일자(월, 일, 요일⭕ - 수정x), 제목⭕, 내용⭕
 
 // 120라인 error메시지 출력 페이지 업서요 ~~
 
@@ -117,8 +117,8 @@ try {
         if($http_method === "POST") {
             $conn->rollBack(); // rollback
         }
-        // echo $e->getMessage(); // 예외 발생 메시지 출력
-                header("Location: 06_error.php/?err_msg={$e->getMessage()}");
+         echo $e->getMessage(); // 예외 발생 메시지 출력
+        //         header("Location: 06_error.php/?err_msg={$e->getMessage()}");
         exit; // 처리 종료
     } finally {
         db_destroy_conn($conn); // DB 파기
@@ -134,18 +134,7 @@ try {
 	<link rel="stylesheet" href="/todolist/src/css/common.css">	
 </head>
 <body>
-	<div class="error_up">
-        <?php
-            require_once(FILE_HEADER);
-        ?>
-        <?php 
-                foreach($arr_err_msg as $val) {
-            ?>
-                <P><?php echo $val ?></P>
-            <?php
-                }
-            ?>
-    </div>
+
 	<div class="top_container">
 	</div>
 	<form action="/todolist/src/04_update.php" method="post">
@@ -244,21 +233,25 @@ try {
                     <div class="box_layout">
                         <div class="align_center date">
                             <img class="flower_y" src="/todolist/doc/img/flower_yellow.png">
-                            <p class="align_center_date">2023년 10월 20일<br>
-                                금요일
+							<!-- 년, 월, 일 출력 -->
+                            <p class="align_center_date"><?php echo $item["create_at"]; ?><br> 
+							<!-- 요일 출력 -->
+							<?php
+								foreach ($result as $item) {
+								$item_yoil=$yoil[date('w', strtotime($item['create_at']))];
+								}
+								echo $item_yoil;
+							?>
                             </p>
-                            <!-- php 데이터 연동 -->
                         </div>
                         <br>
                         <!-- <form class="align_center" action="" method="post"> -->
                         <div class="align_center">
                             <label for="title"></label>
-                            <input type="text" class = 'text_tit' name="title" id="title" value="<?php echo $item["title"] ?>"
-                            maxlength="20">
-                            <!-- value="title" id 뒤에 설정하기 -->
+                            <input type="text" class = 'text_tit' name="title" id="title" value="<?php echo $item["title"] ?>" maxlength="20" spellcheck="false">
                             <br><br>
                             <label for="content"></label>
-                            <textarea class = 'text_con' name="content" id="content" cols="25" rows="10"><?php echo $content; ?></textarea>
+                            <textarea class = 'text_con' name="content" id="content" cols="25" rows="10" spellcheck="false"><?php echo $item["content"] ?></textarea>
                         </div>	
                     </div>
                 </div>
@@ -267,11 +260,11 @@ try {
 						<!-- 수정 버튼 클릭 시 수정
                              post > update.php
                             게시글의 id를 이용해서 update -->
-                        <button class= "side_text button_text" href="/todolist/src/04_update.php">수정</button>
+                        <button class= "side_text button_text" type="submit">수정</button>
                     </div>
                     <div class="side_category bgc_cate3">
 						<!-- 취소 버튼 클릭 시 디테일 페이지로 이동 -->
-                        <a class= "side_text" href="/todolist/src/02_detail.php">취소</a>
+                        <a class= "side_text" href="/todolist/src/02_detail.php/?id=<?php echo $id; ?>&page=<?php echo $page; ?>">취소</a>
                     </div>
                 </div>
             </div>
