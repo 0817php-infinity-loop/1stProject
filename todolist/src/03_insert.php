@@ -1,6 +1,7 @@
 <?php
 define("ROOT", $_SERVER["DOCUMENT_ROOT"]."/todolist/src/");//웹서버root
 define("ERROR_MSG_PARAM", "⛔ %s을 입력해 주세요.");// 파라미터 에러 메세지
+define("ERROR_MSG_PARAM2", "⛔ %s을 클릭해 주세요."); //파라미터 에러 메세지 // 감정
 require_once(ROOT."lib/lib_db.php");// DB관련 라이브러리
 
 // post로 request가 있을 때 처리
@@ -10,6 +11,34 @@ $arr_err_msg = []; // 에러 메세지 저장용
 $title = "";
 $content = "";
 $em_id = "";
+// $create_at = "";
+$yoil = array("일요일","월요일","화요일","수요일","목요일","금요일","토요일"); //요일 출력하기 위한 세팅
+
+try {
+    if(!db_conn($conn)) {
+        // DB Instance 에러
+        throw new Exception("DB Error : PDO Instance");		
+    }
+    $conn->beginTransaction(); // 트랜잭션 시작
+
+    $result=db_insert_boards_now($conn);
+    if($result === FALSE) {
+        // DB Instance 에러
+        throw new Exception("DB Error : 1 Boards");		
+    }
+
+    $conn->commit();
+} catch(Exception $e) {
+    if($conn !== null){
+        $conn->rollBack();
+    }
+    echo $e->getMessage(); // 예외발생 메세지 출력 //v002 del
+    // header("Location: error_test.php/?err_msg={$e->getMessage()}");	//v002 add
+    exit;
+} finally {
+    db_destroy_conn($conn); // DB파기
+}
+
 
 if($http_method === "POST") {
 	try {
@@ -21,52 +50,52 @@ if($http_method === "POST") {
 		$em_id = isset($_POST["em_id"]) ? trim($_POST["em_id"]) : ""; //em_id 셋팅
 		
 		if($title === "") {
-			$arr_err_msg[] = sprintf(ERROR_MSG_PARAM, "[제목]");
+			$arr_err_msg[] = sprintf(ERROR_MSG_PARAM, "제목");
 		}
 		if($content === "") {
-			$arr_err_msg[] = sprintf(ERROR_MSG_PARAM, "[내용]");
+			$arr_err_msg[] = sprintf(ERROR_MSG_PARAM, "내용");
 		}
 		if($em_id === "") {
-			$arr_err_msg[] = sprintf(ERROR_MSG_PARAM, "[감정]");
+			$arr_err_msg[] = sprintf(ERROR_MSG_PARAM2, "감정");
 		}
+
 		if(count($arr_err_msg) === 0) {
-			
-		// DB 접속
-		if(!db_conn($conn)) {
-			// DB Instance 에러
-			throw new Exception("DB Error : PDO Instance");		
-		}
-		$conn->beginTransaction(); // 트랜잭션 시작
-				
-		// 게시글 작성을 위해 파라미터 셋팅
-		$arr_param = [
-			"title" => $_POST["title"]
-			,"content" => $_POST["content"]
-			,"em_id" => $_POST["em_id"]
-		];
+                
+            // DB 접속
+            if(!db_conn($conn)) {
+                // DB Instance 에러
+                throw new Exception("DB Error : PDO Instance");		
+            }
+            $conn->beginTransaction(); // 트랜잭션 시작
+            
+            // 게시글 작성을 위해 파라미터 셋팅
+            $arr_param=$_POST;
+            // insert
+            if(!db_insert_boards($conn, $arr_param)) {
+                // DB Instance 에러
+                throw new Exception("DB Error : Insert Boards");		
+            }
+            $conn->commit(); // 모든 처리 완료 시 커밋		
 
-		// insert
-		if(!db_insert_boards($conn, $arr_post)) {
-			// DB Instance 에러
-			throw new Exception("DB Error : Insert Boards");		
+            // 리스트 페이지로 이동
+            header("Location: 01_list.php");
+            exit;
 		}
-		$conn->commit(); // 모든 처리 완료 시 커밋		
 
-		// 리스트 페이지로 이동
-		header("Location: 01_list.php");
-		exit;
-		}
+        if(count($arr_err_msg) >= 1) {
+            throw new Exception(implode("<br>", $arr_err_msg));
+            // implode : 배열을 스트링형태로 변환시켜줌
+        }
 	} catch(Exception $e) {
 		if($conn !== null){
 			$conn->rollBack();
-		}
-		// var_dump($_POST);	
+		}	
 		echo $e->getMessage(); // 예외발생 메세지 출력 //v002 del
 		// header("Location: error_test.php/?err_msg={$e->getMessage()}");	//v002 add
 		exit;
 	} finally {
 		db_destroy_conn($conn); // DB파기
-	}	
+	}
 }
 ?>
 
@@ -168,10 +197,12 @@ if($http_method === "POST") {
                     <div class="box_layout">
                         <div class="align_center date">
                             <img class="flower_y" src="/todolist/doc/img/flower_red.png">
-                            <p class="align_center_date">2023년 10월 16일<br>
-                                금요일
-                            </p>
-                            <!-- php 데이터 연동 -->
+                            <?php
+                                $item_yoil=$yoil[date('w', strtotime($result))];
+                                $string = preg_replace('/-/','년 ',$result,1);
+                                $string = preg_replace('/-/','월 ',$string,1)."일 ";
+                            ?>
+                            <p class="align_center_date"><?php echo $string; ?><br><?php echo $item_yoil; ?></p>     
                         </div>
                         <br>
 						<div class="align_center">
@@ -188,7 +219,7 @@ if($http_method === "POST") {
                 </div>
                 <div class="side_box">
                     <div class="side_category bgc_cate1">
-                        <button class= "side_text button_text" href="/todolist/src/03_insert.php">작성</button>
+                        <button class= "side_text button_text" type= submit href="/todolist/src/03_insert.php">작성</button>
                     </div>
                     <div class="side_category bgc_cate3">
                         <a class= "side_text" href="/todolist/src/01_list.php/?page=1">취소</a>
