@@ -71,7 +71,14 @@
 				<div class="left_box">
 					<div class="box_layout">
 						<div class="say">		
-							<?php echo $item['em_comment']; ?>
+							<?php
+							$print_poem = explode('-', $item['em_comment']);
+							foreach($print_poem as $print_poem_val) {
+								?>
+								<p class="detail_poem"> <?php echo $print_poem_val."\n"; ?></p>
+								<?php
+							}
+							?>
 						</div>
 						<div class="calender">
 						</div>
