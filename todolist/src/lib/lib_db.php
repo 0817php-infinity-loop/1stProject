@@ -64,6 +64,7 @@
 				."		,dia.content "
 				."		,cast(dia.create_at as date) as create_at "
 				."		,emo.em_path "
+				."		,emo.em_comment "
 				." FROM "
 				." 		diary AS dia "
 				."		JOIN emotion AS emo "
@@ -233,21 +234,21 @@
 	function db_delete_boards_id(&$conn, &$arr_param) {
 		try {
 			$sql = 
-			" UPDATE boards "
+			" UPDATE diary "
 			." SET "
-			."		b_delete_at = now() "
-			."		,b_delete_flag = '1' "
+			."		delete_at = now() "
+			."		,delete_flag = '1' "
 			." WHERE "
-			."		b_id=:b_id "
+			."		id = :id "
 			;
 
-			$arr_ps = [
-				":b_id" => $arr_param["b_id"]
+			$arr_par = [
+				":id" => $arr_param["id"]
 			];
 			
 			// 2. Query 실행
 			$stmt = $conn->prepare($sql);
-			$result = $stmt->execute($arr_ps);
+			$result = $stmt->execute($arr_par);
 			return $result; //정상 종료: true 리턴
 		} catch (Exception $e) {
 			echo $e->getMessage();

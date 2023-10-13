@@ -390,7 +390,7 @@ a {
     width: 380px;
     height: 270px;
 }
-.detail_table{
+.detail_delete_table{
 	margin: -2px auto;
 }
 .detail_textarea_1 {
@@ -717,4 +717,33 @@ a {
 
 .layout_delete_bottom img {
 	float:right;
+}
+
+.delete_textarea_1 {
+	width: 400px;
+	height: 50px;
+	padding: 12px 0px 10px 20px;
+	background-color: #e6dfd4;
+	box-sizing: border-box;
+	border-radius: 10px;	
+	resize: none;
+	vertical-align:middle;
+	border: none;
+	font-size: 25px;
+}
+.delete_textarea_2 {
+	width: 400px;
+	height: 400px;
+	padding: 20px;
+	background-color: #e6dfd4;
+	box-sizing: border-box;
+	border-radius: 10px;	
+	resize: none;
+	vertical-align:top;
+	border: none;
+	font-size: 20px;
+}
+
+.delete_textarea_3{
+	padding: 5.5px 0px;
 }

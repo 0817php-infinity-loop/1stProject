@@ -12,7 +12,11 @@
 				throw new Exception("Parameter ERROR : No id"); // 강제 예외 발생 :
 			}
 			$id = $_GET["id"]; // id 셋팅
-		
+
+			if(!isset($_GET["page"]) || $_GET["page"] === "") {
+				throw new Exception("Parameter ERROR : No page"); // 강제 예외 발생 :
+			}
+			$page = $_GET["page"]; // page 셋팅
 			// DB 연결
 			if(!db_conn($conn)) {
 				// DB Instance 에러
@@ -34,13 +38,15 @@
 			   }
 					
 			   $item = $result[0];
+
 			} catch(Exception $e) {
 				echo $e->getMessage();
 				exit;
 			} finally {
 			   db_destroy_conn($conn); // DB 파기
 			}
-			
+			$yoil = array("일요일","월요일","화요일","수요일","목요일","금요일","토요일");
+			$item_yoil=$yoil[date('w', strtotime($item['create_at']))];
 			// $page = $_GET["page"];
 ?>
 
@@ -58,10 +64,14 @@
 	</div>
 	<form action="/todolist/src/05_delete.php" method="post">
 		<div class="main_container">
+
+			
 			<div class="main_container_box">
 				<div class="left_box">
 					<div class="box_layout">
-						<div class="say">명언 위치</div>
+						<div class="say">		
+							<?php echo $item['em_comment']; ?>
+						</div>
 						<div class="calender">
 						</div>
 						<div class="detail_img">
@@ -75,13 +85,13 @@
 					<div class="box_layout">
 						<div class="align_center date">
 							<img class="detail_emo" src="<?php echo IMG.$item['em_path']; ?>">
-							<p class="align_center_date"><?php echo $item['create_at']; ?><br>
-								금요일
-							</p>
+							<p class="align_center_date"><?php echo $item['create_at']; ?></p>
+							<p class="align_center_date"><?php echo $item_yoil ?></p>
+							<br>
 							<!-- php 데이터 연동 -->
 						</div>
 						<br>
-						<table class ="detail_table">
+						<table class ="detail_delete_table">
 							<thead>
 								<tr>
 									<td class ="detail_textarea_1">
@@ -107,10 +117,10 @@
 						<a class= "side_text" href="/todolist/src/01_list.php">목록</a>
 					</div>
 					<div class="side_category bgc_cate2">
-						<a class= "side_text" href="/todolist/src/04_update.php">수정</a>
+						<a class= "side_text" href="/todolist/src/04_update.php/?id=<?php echo $id ?>&page=<?php echo $page ?>">수정</a>
 					</div>
 					<div class="side_category bgc_cate3">
-						<a class= "side_text" href="/todolist/src/05_delete.php">삭제</a>
+						<a class= "side_text" href="/todolist/src/05_delete.php/?id=<?php echo $id ?>&page=<?php echo $page ?>">삭제</a>
 					</div>
 				</div>
 			</div>

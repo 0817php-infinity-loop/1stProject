@@ -1,3 +1,89 @@
+<?php
+		define("ROOT", $_SERVER["DOCUMENT_ROOT"]."/todolist/src/");
+		define("IMG", "/todolist/doc/img/");
+		require_once(ROOT."lib/lib_db.php");
+		
+		try {
+			// 2. DB Connect
+			// 2-1 connection 함수 호출
+			$conn = null;
+			if(!db_conn($conn)) {
+				// 2-2. 예외 처리
+				throw new Exception("DB Error : PDO Instance");
+			}
+	
+			// Mehod 획득
+			$http_method = $_SERVER["REQUEST_METHOD"];
+	
+			if($http_method === "GET") {
+				// 3-1. GET 일 경우
+				// 3-1-1. 파라미터에서 id 획득
+				$id = isset($_GET["id"]) ? $_GET["id"] : "";
+				$page = isset($_GET["page"]) ? $_GET["page"] : "";
+				$arr_err_msg = [];
+				if($id === "") {
+				 $arr_err_msg[] = "Parameter Error : id";
+				}
+				if($page === "") {
+					$arr_err_msg[] =  "Parameter Error : page";
+				}
+				if(count($arr_err_msg) >= 1) {
+					throw new Exception(implode("<br>", $arr_err_msg));
+				}
+			
+	
+				//3-1-2. 게시글 정보 획득
+				$arr_param = [
+					"id" => $id
+				];
+
+
+				$result = db_select_boards_id($conn, $arr_param);
+	
+				// 3-1-3. 예외 처리
+				if($result === false) {
+					throw new Exception("DB Error : Select id");
+				} else if(!(count($result) === 1)) {
+					throw new  Exception("DB Error : Select id count");
+				}
+				$item = $result[0];
+	
+			} else {
+				// 3-2. POST일 경우
+				$id = isset($_POST["id"]) ? $_POST["id"] : "";
+				$arr_err_msg = [];
+				if($id === "") {
+				 $arr_err_msg[] = "Parameter Error : id";
+				}
+			//3-2-2. Transaction 시작
+			$conn->beginTransaction();
+			
+			//3-2-3. 게시글 정보 삭제
+			$arr_param = [
+				"id" => $id
+			];
+			
+			// 3-2-3. 예외 처리
+			if(!db_delete_boards_id($conn, $arr_param)) {
+				throw new Exception("DB Error : Delete Boards id");
+			}
+			$conn->commit(); // commit
+			header("Location: 01_list.php");
+			exit;
+		
+		 }
+		} catch(Exception $e) {
+			// POST일 경우에만 rollback
+			if($http_method === "POST") {
+				$conn->rollBack();
+			}
+			echo $e->getMessage(); // 에러 메세지 출력
+			exit; // 처리종료
+		} finally {
+				db_destroy_conn($conn);
+		}
+?>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -9,7 +95,7 @@
 <body>
 	<div class="top_container">
 	</div>
-	<form class="align_center" action="/todolist/src/05_delete.php" method="post">	
+	<form action="/todolist/src/05_delete.php" method="post">	
 		<div class="main_container">
 			<div class="main_container_box">
 				<div class="left_box">
@@ -31,27 +117,43 @@
 				</div>					
 				<div class="right_box">
 					<div class="box_layout">
-						<div class="align_center date">
-							<img class="delete_emo" src="/todolist/doc/img/emotion_1.png">
-							<p class="align_center_date">2023년 10월 16일<br>
+					<div class="align_center date">
+							<img class="detail_emo" src="<?php echo IMG.$item['em_path']; ?>">
+							<p class="align_center_date"><?php echo $item['create_at']; ?><br>
 								금요일
 							</p>
 							<!-- php 데이터 연동 -->
 						</div>
 						<br>					
-							<label for="title"></label>
-							<input type="text" class ="textarea_1" name="title" id="title" maxlength="20" value="">
-							<br><br>
-							<label for="content"></label>
-							<textarea class ="textarea_2" name="content" id="content" cols="25" rows="10"></textarea>
+						<table class ="detail_delete_table">
+							<thead>
+								<tr>
+									<td class ="delete_textarea_1">
+										
+								
+										<?php echo $item["title"]; ?>
+									</td>
+								</tr>
+							</thead>
+							<tr>
+								<td class ="delete_textarea_3">
+								</td>
+							</tr>
+							<tr>
+								<td class ="delete_textarea_2">
+									<?php echo $item["content"]; ?>
+								</td>
+							</tr>
+						</table>
 					</div>
 				</div>
 				<div class="side_box">
 					<div class="side_category bgc_cate1">
+						<input type="hidden" name="id" value="<?php echo $id; ?>">
 						<button class= "side_text button_text" type="submit">삭제</button>
 					</div>
 					<div class="side_category bgc_cate3">
-						<a class= "side_text" href="/todolist/src/02_detail.php">취소</a>
+						<a class= "side_text" href="/todolist/src/02_detail.php/?id=<?php echo $id ?>&page=<?php echo $page ?>">취소</a>
 					</div>
 				</div>
 			</div>
