@@ -1,6 +1,7 @@
 <?php
 define("ROOT", $_SERVER["DOCUMENT_ROOT"]."/todolist/src/");//웹서버root
 define("ERROR_MSG_PARAM", "⛔ %s을 입력해 주세요.");// 파라미터 에러 메세지
+define("ERROR_MSG_PARAM2", "⛔ %s을 클릭해 주세요."); //파라미터 에러 메세지 // 감정
 require_once(ROOT."lib/lib_db.php");// DB관련 라이브러리
 
 // post로 request가 있을 때 처리
@@ -49,13 +50,13 @@ if($http_method === "POST") {
 		$em_id = isset($_POST["em_id"]) ? trim($_POST["em_id"]) : ""; //em_id 셋팅
 		
 		if($title === "") {
-			$arr_err_msg[] = sprintf(ERROR_MSG_PARAM, "[제목]");
+			$arr_err_msg[] = sprintf(ERROR_MSG_PARAM, "제목");
 		}
 		if($content === "") {
-			$arr_err_msg[] = sprintf(ERROR_MSG_PARAM, "[내용]");
+			$arr_err_msg[] = sprintf(ERROR_MSG_PARAM, "내용");
 		}
 		if($em_id === "") {
-			$arr_err_msg[] = sprintf(ERROR_MSG_PARAM, "[감정]");
+			$arr_err_msg[] = sprintf(ERROR_MSG_PARAM2, "감정");
 		}
 
 		if(count($arr_err_msg) === 0) {
@@ -83,6 +84,7 @@ if($http_method === "POST") {
 
         if(count($arr_err_msg) >= 1) {
             throw new Exception(implode("<br>", $arr_err_msg));
+            // implode : 배열을 스트링형태로 변환시켜줌
         }
 	} catch(Exception $e) {
 		if($conn !== null){
