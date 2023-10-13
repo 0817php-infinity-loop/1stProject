@@ -17,7 +17,7 @@
 
 /* 배경 색상 지정 */
 body {
-	background-color: rgb(240, 227, 216);
+	background-color: rgb(247, 243, 222);
 }
 
 /* a태그 밑줄, 링크색 없애기 */
@@ -37,7 +37,7 @@ a {
 	height: 800px;
 	background-color: rgb(244, 190, 112);
 	margin: 0 auto;
-	border-radius: 10px;
+	border-radius: 30px;
 	padding-top:50px;
 }
 
@@ -73,7 +73,7 @@ a {
 	float:left;
 	position: relative;
 	z-index: 1;
-	background-color: #FEFAEF;
+	background-color: rgb(254, 250, 239);
 	border-radius: 0px 5px 5px 0px;
 	filter:drop-shadow(5px 5px 15px rgb(36, 29, 29));
 	padding: 20px;
@@ -174,13 +174,13 @@ a {
 }
 
 .main_page_img:hover img {
-	transform: scale(1.4);
+	transform: scale(1.2);
 }
 
 /* 메인페이지- 배경 */
 .bg_img > div {
 	Position:absolute;
-	animation:blink-effect 2s linear infinite; 
+	animation:blink-effect 3s linear infinite; 
 }
 .bg_img_01 {
 	width: 90px;
@@ -218,7 +218,7 @@ a {
 	height: 100px;
 	Top:150px;
 	right:420px;
-	animation-delay:7s !important;
+	animation-delay:5s !important;
 }
 .bg_img_03 img {
 	width: 100%;
@@ -239,7 +239,7 @@ a {
 	height: 90px;
 	top:530px;
 	right:220px;
-	animation-delay:5s !important;
+	animation-delay:9s !important;
 }
 .bg_img_05 img {
 	width: 100%;
