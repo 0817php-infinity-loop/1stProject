@@ -122,7 +122,6 @@
 					<div class="align_center date">
 							<img class="detail_emo" src="<?php echo IMG.$item['em_path']; ?>">
 							<p class="align_center_date"><?php echo $print_date; ?><br>
-								금요일
 							</p>
 							<!-- php 데이터 연동 -->
 						</div>
