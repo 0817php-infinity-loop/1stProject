@@ -47,6 +47,8 @@
 					throw new  Exception("DB Error : Select id count");
 				}
 				$item = $result[0];
+				$arr = explode('-', $item['create_at']);
+				$print_date = $arr[0]."년 ".$arr[1]."월 ".$arr[2]."일";
 	
 			} else {
 				// 3-2. POST일 경우
@@ -119,7 +121,7 @@
 					<div class="box_layout">
 					<div class="align_center date">
 							<img class="detail_emo" src="<?php echo IMG.$item['em_path']; ?>">
-							<p class="align_center_date"><?php echo $item['create_at']; ?><br>
+							<p class="align_center_date"><?php echo $print_date; ?><br>
 								금요일
 							</p>
 							<!-- php 데이터 연동 -->

@@ -830,6 +830,7 @@ a {
 	height: 70px;
 }
 
+
 .align_center_txt_red  {
 	color: red;
 	font-size: 40px;
@@ -855,9 +856,14 @@ a {
 	margin: 0 auto;
 }
 
-.layout_delete_top img, .layout_delete_bottom img {
+.layout_delete_top img {
 	width: 150px;
 	height: 100px;
+}
+
+.layout_delete_bottom img {
+	width: 100px;
+	height: 80px;
 }
 
 .layout_delete_top img {
