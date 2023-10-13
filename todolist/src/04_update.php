@@ -96,7 +96,7 @@ try {
 			$conn->commit(); // commit
 
 			// 게시글 수정 했을 경우 detail page로 이동
-			header("Location: 03_detail.php/?id={$id}&page={$page}");
+			header("Location: 02_detail.php/?id={$id}&page={$page}");
 			exit;
 		}                                                    
 	}
