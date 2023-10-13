@@ -9,8 +9,6 @@ require_once(ROOT."lib/lib_db.php");// DB관련 라이브러리
 //              왼) 수정할 이모션 선택 시 값 보내기⭕
 //              오) 작성일자(월, 일, 요일 - 수정x)⭕, 제목⭕, 내용⭕
 
-// 120라인 error메시지 출력 페이지 업서요 ~~
-
 $conn = null; // DB 연결용 변수
 $http_method = $_SERVER["REQUEST_METHOD"]; // Method 확인
 $arr_err_msg = []; // 에러 메세지 저장용
@@ -59,10 +57,13 @@ try {
 		if($page === "") {
 			$arr_err_msg[] = sprintf(ERROR_MSG_PARAM, "page");
 		}
+
 		// id, page가 없을 경우(예외처리)
 		if(count($arr_err_msg) >= 1) {
 			throw new Exception(implode("<br>", $arr_err_msg));
 		}
+
+
 		// title, content, em_id가 없을 경우(처리 속행)
 		if($title === "") {
 			$arr_err_msg[] = sprintf(ERROR_MSG_PARAM, "제목");
@@ -71,7 +72,7 @@ try {
 			$arr_err_msg[] = sprintf(ERROR_MSG_PARAM, "내용");
 		}
 		if($em_id === "") {
-			$arr_err_msg[] = sprintf(ERROR_MSG_PARAM, "감정");
+			$arr_err_msg[] = sprintf(ERROR_MSG_PARAM2, "감정");
 		}
 
 		// 에러 메세지가 없을 경우에 업데이트 처리
@@ -99,7 +100,7 @@ try {
 			header("Location: 02_detail.php/?id={$id}&page={$page}");
 			exit;
 		}
-		                                              
+
 	}
 	// 게시글 데이터 조회를 위한 파라미터 세팅
 	$arr_param = [
@@ -119,7 +120,7 @@ try {
 	$item = $result[0];
 	// 0000-00-00 -> 0000년 00월 00일로 출력
 	$arr = explode ("-", $item["create_at"]);
-	$pirnt_date = $arr[0]."년 ".$arr[1]."월 ".$arr[2]."일";
+	$print_date = $arr[0]."년 ".$arr[1]."월 ".$arr[2]."일";
 } catch(Exception $e) {
 	if($http_method === "POST") {
 		$conn->rollBack(); // rollback
@@ -127,6 +128,7 @@ try {
 		echo $e->getMessage(); // 예외 발생 메시지 출력
 	//         header("Location: 06_error.php/?err_msg={$e->getMessage()}");
 	exit; // 처리 종료
+		
 } finally {
 	db_destroy_conn($conn); // DB 파기
 }
@@ -232,7 +234,14 @@ try {
 							</div>
                         </div>
                         <div class="align_center">
-                                <p class="align_center_txt">감정을 수정해 주세요 !</p>
+							<p class="align_center_txt">감정을 수정해 주세요 !</p>
+							<?php
+								foreach ($arr_err_msg as $item) {
+							?>
+									<p><?php echo $item; ?></p>
+							<?php
+								}
+							?>
                         </div>
                     </div>
                 </div>
@@ -241,11 +250,11 @@ try {
                         <div class="align_center date">
                             <img class="flower_y" src="/todolist/doc/img/flower_yellow.png">
 							<!-- 년, 월, 일 출력 -->
-                            <p class="align_center_date"><?php echo $pirnt_date ?><br> 
+                            <p class="align_center_date"><?php echo $print_date ?><br> 
 							<!-- 요일 출력 -->
 							<?php
 								foreach ($result as $item) {
-								$item_yoil=$yoil[date('w', strtotime($item["create_at"]))];
+									$item_yoil=$yoil[date('w', strtotime($item["create_at"]))];
 								}
 								echo $item_yoil;
 							?>
