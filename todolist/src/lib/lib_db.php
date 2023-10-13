@@ -48,39 +48,36 @@
     function db_destroy_conn( &$conn ) {
         $conn = null;
     }
+
 	// ------------------------
-    // 함수명 : db_select_boards_id
-    // 기능 : id를 통한 제목, 내용 출력
+    // 함수명 : db_select_boards_emo_rank
+    // 기능 : 감정별 통계 순위 조회
     // 파라미터 : PDO 	 &$conn
-	//			Array	&$arr_param
-    // 리턴 : Array / False
+    // 리턴 : Array / false
     // ------------------------
-	function db_select_boards_id(&$conn, &$arr_param) {
+	function db_select_boards_emo_rank(&$conn) {
 		try {
 			$sql = 
 				" SELECT "
-				."		dia.id "
-				."		,dia.title "
-				."		,dia.content "
-				."		,cast(dia.create_at as date) as create_at "
+				."		emo.em_name "
 				."		,emo.em_path "
+				."		,COUNT(dia.em_id) AS cnt_em_id "
 				." FROM "
 				." 		diary AS dia "
 				."		JOIN emotion AS emo "
 				."			ON dia.em_id = emo.em_id "
 				." WHERE "
-				."		dia.id = :id "
-				." 		AND "
-				." 		dia.delete_flag = '0' "
+				."		dia.delete_flag = '0' "
+				." GROUP BY "
+				."		dia.em_id "
+				." ORDER BY "
+				."		cnt_em_id DESC "
+				." LIMIT 5 "
 			;
-
-			$arr_ps = [
-				":id" => $arr_param["id"]
-			];
-
-			$stmt = $conn->prepare($sql);
-			$stmt->execute($arr_ps);
+			
+			$stmt = $conn->query($sql);
 			$result = $stmt->fetchAll();
+
 			return $result;
 		} catch (Exception $e) {
 			echo $e->getMessage();
@@ -146,8 +143,6 @@
 				." 		delete_flag = '0' "
 			;
 
-			$arr_ps = [];
-
 			$stmt = $conn->query($sql);
 			$result = $stmt->fetchAll();
 			return (int)$result[0]["cnt"];
@@ -158,37 +153,79 @@
 	}
 
 	// ------------------------
-    // 함수명 : db_insert_boards
-    // 기능 : boards 데이터 추가
+    // 함수명 : db_select_boards_id
+    // 기능 : id를 통한 제목, 내용 출력
     // 파라미터 : PDO 	 &$conn
-	//			 Array	&$arr_param 쿼리 작성용 배열
-    // 리턴 : Boolean
+	//			Array	&$arr_param
+    // 리턴 : Array / False
     // ------------------------
-	function db_insert_boards(&$conn, &$arr_param) {
+	function db_select_boards_id(&$conn, &$arr_param) {
+		try {
 			$sql = 
-				" INSERT INTO boards( "
-				."		b_title "
-				."		,b_content "
-				."		) "
-				." VALUES( "
-				."		:b_title "
-				." 		,:b_content "
-				." ) "
+				" SELECT "
+				."		dia.id "
+				."		,dia.title "
+				."		,dia.content "
+				."		,cast(dia.create_at as date) as create_at "
+				."		,emo.em_path "
+				." FROM "
+				." 		diary AS dia "
+				."		JOIN emotion AS emo "
+				."			ON dia.em_id = emo.em_id "
+				." WHERE "
+				."		dia.id = :id "
+				." 		AND "
+				." 		dia.delete_flag = '0' "
 			;
 
 			$arr_ps = [
-				":b_title" => $arr_param["title"]
-				,":b_content" => $arr_param["content"]
+				":id" => $arr_param["id"]
 			];
-		try {
+
 			$stmt = $conn->prepare($sql);
-			$result = $stmt->execute($arr_ps);
+			$stmt->execute($arr_ps);
+			$result = $stmt->fetchAll();
 			return $result;
-		} catch (exception $e) {
+		} catch (Exception $e) {
 			echo $e->getMessage();
 			return false;
 		}
 	}
+
+	// ------------------------
+    // 함수명 : db_insert_boards
+    // 기능 : boards 데이터 추가
+    // 파라미터 : PDO    &$conn
+    //           Array  &$arr_param 쿼리 작성용 배열
+    // 리턴 : Boolean
+    // ------------------------
+    function db_insert_boards(&$conn, &$arr_param) {
+		$sql =
+			" INSERT INTO diary( "
+			."      title "
+			."      ,content "
+			."      ,em_id "
+			."      ) "
+			." VALUES( "
+			."      :title "
+			."      ,:content "
+			."      ,:em_id "
+			." ) "
+		;
+		$arr_ps = [
+			":title" => $arr_param["title"]
+			,":content" => $arr_param["content"]
+			,":em_id" => $arr_param["em_id"]
+		];
+	try {
+		$stmt = $conn->prepare($sql);
+		$result = $stmt->execute($arr_ps);
+		return $result;
+	} catch (exception $e) {
+		echo $e->getMessage();
+		return false;
+	}
+}
 
 	// ------------------------
     // 함수명 : db_update_boards_id
@@ -257,31 +294,4 @@
 			return false; // 예외발생 false리턴
 		}
 	}
-?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
 ?>
