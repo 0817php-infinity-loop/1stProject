@@ -227,6 +227,22 @@
 	}
 }
 
+function db_insert_boards_now(&$conn) {
+	try {
+	$sql =
+		" SELECT "
+		."		cast(NOW() as date) as now_a"
+	;
+
+	$stmt = $conn->query($sql);
+	$result = $stmt->fetchAll();
+	return $result[0]["now_a"];
+	} catch (exception $e) {
+		echo $e->getMessage();
+		return false;
+	}
+}
+
 	// ------------------------
     // 함수명 : db_update_boards_id
     // 기능 : boards 레코드 수정
