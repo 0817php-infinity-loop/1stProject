@@ -1,7 +1,8 @@
 <?php
 define("ROOT", $_SERVER["DOCUMENT_ROOT"]."/todolist/src/"); // 웹서버 root 패스 생성
-define("ERROR_MSG_PARAM", "⛔ %s을 입력해 주세요."); //파라미터 에러 메세지
-define("ERROR_MSG_PARAM2", "⛔ %s을 클릭해 주세요."); //파라미터 에러 메세지
+define("IMG", "/todolist/doc/img/");
+define("ERROR_MSG_PARAM", "⛔ %s을 입력해 주세요."); //파라미터 에러 메세지 // 제목, 내용
+define("ERROR_MSG_PARAM2", "⛔ %s을 클릭해 주세요."); //파라미터 에러 메세지 // 감정
 require_once(ROOT."lib/lib_db.php");// DB관련 라이브러리
 
 // update page : 
@@ -43,86 +44,88 @@ try {
 			throw new Exception(implode("<br>", $arr_err_msg));
 		}
         // 사용자가 처리할 수 있는 에러
-        } else {
-            // POST Method
-            // 게시글 수정을 위해 파라미터 세팅
-            $id = isset($_GET["id"]) ? $_GET["id"] : $_POST["id"]; // id 세팅
-            $page = isset($_GET["page"]) ? $_GET["page"] : $_POST["page"]; // page 세팅
-            $title = trim(isset($_POST["title"]) ? trim($_POST["title"]) : ""); // title 세팅
-		    $content = trim(isset($_POST["content"]) ? trim($_POST["content"]) : ""); // content 세팅
-		    $em_id = trim(isset($_POST["em_id"]) ? trim($_POST["em_id"]) : ""); // em_id 세팅
+	} else {
+		// POST Method
+		// 게시글 수정을 위해 파라미터 세팅
+		$id = isset($_POST["id"]) ? $_POST["id"] : ""; // id 세팅
+		$page = isset($_POST["page"]) ? $_POST["page"] : ""; // page 세팅
+		$title = trim(isset($_POST["title"]) ? trim($_POST["title"]) : ""); // title 세팅
+		$content = trim(isset($_POST["content"]) ? trim($_POST["content"]) : ""); // content 세팅
+		$em_id = trim(isset($_POST["em_id"]) ? trim($_POST["em_id"]) : ""); // em_id 세팅
 
-            if($id === "") {
-                $arr_err_msg[] = sprintf(ERROR_MSG_PARAM, "id");
-            }
-            if($page === "") {
-                $arr_err_msg[] = sprintf(ERROR_MSG_PARAM, "page");
-            }
-            if(count($arr_err_msg) >= 1) {
-                throw new Exception(implode("<br>", $arr_err_msg));
-            }
-            if($title === "") {
-                $arr_err_msg[] = sprintf(ERROR_MSG_PARAM, "제목");
-            }
-            if($content === "") {
-                $arr_err_msg[] = sprintf(ERROR_MSG_PARAM, "내용");
-            }
-            if($em_id === "") {
-                $arr_err_msg[] = sprintf(ERROR_MSG_PARAM, "감정");
-            }
-
-            // 에러 메세지가 없을 경우에 업데이트 처리
-            if(count($arr_err_msg) === 0) {
-                // 데이터 무결성
-                $arr_param = [
-                    "id" => $id
-                    ,"title" => $title
-                    ,"content" => $content 
-                    ,"em_id" => $em_id 
-                    // ,"title" => $_POST["title"]
-                    // ,"content" => $_POST["content"]
-                ];
-
-                // 게시글 수정 처리 POST Method 일 경우에만 트랜잭션 시작 
-                $conn->beginTransaction(); // 트랜잭션 시작
-
-                if(!db_update_boards_id($conn, $arr_param)) {
-                    // DB  Update_Boards 에러
-                    throw new Exception("DB Error : Update_Boards_id");
-                }
-                $conn->commit(); // commit
-
-                // 게시글 수정 했을 경우 detail page로 이동
-                header("Location: 03_detail.php/?id={$id}&page={$page}"); 
-                exit;
-                }                                                    
-            }
-            // 게시글 데이터 조회를 위한 파라미터 셋팅
-		$arr_param = [
-			"id" => $id
-		];
-
-		// 게시글 데이터 조회
-		$result = db_select_boards_id($conn, $arr_param);
-		// 게시글 조회 예외처리
-		if($result === false) {
-			// 게시글 조회 에러
-			throw new Exception("DB Error : PDO Select_id");
-		} else if(!(count($result) === 1)) {
-			// 게시글 조회 count 에러
-			throw new Exception("DB Error : PDO Select_id Count, ".count($result));
+		if($id === "") {
+			$arr_err_msg[] = sprintf(ERROR_MSG_PARAM, "id");
 		}
-		$item = $result[0];
-    } catch(Exception $e) {
-        if($http_method === "POST") {
-            $conn->rollBack(); // rollback
-        }
-         echo $e->getMessage(); // 예외 발생 메시지 출력
-        //         header("Location: 06_error.php/?err_msg={$e->getMessage()}");
-        exit; // 처리 종료
-    } finally {
-        db_destroy_conn($conn); // DB 파기
-    }
+		if($page === "") {
+			$arr_err_msg[] = sprintf(ERROR_MSG_PARAM, "page");
+		}
+		// id, page가 없을 경우(예외처리)
+		if(count($arr_err_msg) >= 1) {
+			throw new Exception(implode("<br>", $arr_err_msg));
+		}
+		// title, content, em_id가 없을 경우(처리 속행)
+		if($title === "") {
+			$arr_err_msg[] = sprintf(ERROR_MSG_PARAM, "제목");
+		}
+		if($content === "") {
+			$arr_err_msg[] = sprintf(ERROR_MSG_PARAM, "내용");
+		}
+		if($em_id === "") {
+			$arr_err_msg[] = sprintf(ERROR_MSG_PARAM, "감정");
+		}
+
+		// 에러 메세지가 없을 경우에 업데이트 처리
+		if(count($arr_err_msg) === 0) {
+			// 게시글 수정을 위해 파라미터 세팅
+			$arr_param = [
+				"id" => $id
+				,"title" => $title
+				,"content" => $content 
+				,"em_id" => $em_id 
+				// ,"title" => $_POST["title"]
+				// ,"content" => $_POST["content"]
+			];
+
+			// 게시글 수정 처리 POST Method 일 경우에만 트랜잭션 시작 
+			$conn->beginTransaction(); // 트랜잭션 시작
+
+			if(!db_update_boards_id($conn, $arr_param)) {
+				// DB  Update_Boards 에러
+				throw new Exception("DB Error : Update_Boards_id");
+			}
+			$conn->commit(); // commit
+
+			// 게시글 수정 했을 경우 detail page로 이동
+			header("Location: 03_detail.php/?id={$id}&page={$page}");
+			exit;
+		}                                                    
+	}
+	// 게시글 데이터 조회를 위한 파라미터 세팅
+	$arr_param = [
+		"id" => $id
+	];
+
+	// 게시글 데이터 조회
+	$result = db_select_boards_id($conn, $arr_param);
+	// 게시글 조회 예외처리
+	if($result === false) {
+		// 게시글 조회 에러
+		throw new Exception("DB Error : PDO Select_id");
+	} else if(!(count($result) === 1)) {
+		// 게시글 조회 count 에러
+		throw new Exception("DB Error : PDO Select_id Count, ".count($result));
+	}
+	$item = $result[0];
+} catch(Exception $e) {
+	if($http_method === "POST") {
+		$conn->rollBack(); // rollback
+	}
+		echo $e->getMessage(); // 예외 발생 메시지 출력
+	//         header("Location: 06_error.php/?err_msg={$e->getMessage()}");
+	exit; // 처리 종료
+} finally {
+	db_destroy_conn($conn); // DB 파기
+}
 ?>
 
 <!DOCTYPE html>
@@ -148,7 +151,7 @@ try {
 							<div class="emotion_ma1">
 								<div class="emotion_lay1">
 									<label class="emotion_each" for="emotion1">
-									<input type="radio" name="emotion" id="emotion1" value="1">
+									<input type="radio" name="em_id" id="emotion1" value="1">
 									<img class="emo" src="/todolist/doc/img/emotion_1.png">
 									<br>
                                     <p class="emotion_lay_p">행복</p>
@@ -157,7 +160,7 @@ try {
 								</div>
 								<div class="emotion_lay1">
 									<label class="emotion_each" for="emotion2">
-									<input type="radio" name="emotion" id="emotion2" value="2">
+									<input type="radio" name="em_id" id="emotion2" value="2">
 									<img class="emo" src="/todolist/doc/img/emotion_2.png">
 									<br>
                                     <p class="emotion_lay_p">기쁨</p>
@@ -166,7 +169,7 @@ try {
 								</div>
 								<div class="emotion_lay1">
 									<label class="emotion_each" for="emotion3">
-									<input type="radio" name="emotion" id="emotion3" value="3">
+									<input type="radio" name="em_id" id="emotion3" value="3">
 									<img class="emo" src="/todolist/doc/img/emotion_3.png">
 									<br>
                                     <p class="emotion_lay_p">평온</p>
@@ -177,7 +180,7 @@ try {
 							<div class="emotion_ma2">
 								<div class="emotion_lay2">
 									<label class="emotion_each" for="emotion4">
-									<input type="radio" name="emotion" id="emotion4" value="4">
+									<input type="radio" name="em_id" id="emotion4" value="4">
 									<img class="emo" src="/todolist/doc/img/emotion_4.png">
 									<br>
                                     <p class="emotion_lay_p">슬픔</p>
@@ -186,7 +189,7 @@ try {
 								</div>
 								<div class="emotion_lay2">
 									<label class="emotion_each" for="emotion5">
-									<input type="radio" name="emotion" id="emotion5" value="5">
+									<input type="radio" name="em_id" id="emotion5" value="5">
 									<img class="emo" src="/todolist/doc/img/emotion_5.png">
 									<br>
                                     <p class="emotion_lay_p">우울</p>
@@ -195,7 +198,7 @@ try {
 								</div>
 								<div class="emotion_lay2">
 									<label class="emotion_each" for="emotion6">
-									<input type="radio" name="emotion" id="emotion6" value="6">
+									<input type="radio" name="em_id" id="emotion6" value="6">
 									<img class="emo" src="/todolist/doc/img/emotion_6.png">
 									<br>
                                     <p class="emotion_lay_p">피곤</p>
@@ -206,7 +209,7 @@ try {
 							<div class="emotion_ma3">
 								<div class="emotion_lay3">
 									<label class="emotion_each" for="emotion7">
-									<input type="radio" name="emotion" id="emotion7" value="7">
+									<input type="radio" name="em_id" id="emotion7" value="7">
 									<img class="emo" src="/todolist/doc/img/emotion_7.png">
 									<br>
                                     <p class="emotion_lay_p">화남</p>
@@ -215,7 +218,7 @@ try {
 								</div>
 								<div class="emotion_lay3">
 									<label class="emotion_each" for="emotion8">
-									<input type="radio" name="emotion" id="emotion8" value="8">
+									<input type="radio" name="em_id" id="emotion8" value="8">
 									<img class="emo" src="/todolist/doc/img/emotion_8.png">
 									<br>
                                     <p class="emotion_lay_p">불만</p>
@@ -238,7 +241,7 @@ try {
 							<!-- 요일 출력 -->
 							<?php
 								foreach ($result as $item) {
-								$item_yoil=$yoil[date('w', strtotime($item['create_at']))];
+								$item_yoil=$yoil[date('w', strtotime($item["create_at"]))];
 								}
 								echo $item_yoil;
 							?>
@@ -247,11 +250,12 @@ try {
                         <br>
                         <!-- <form class="align_center" action="" method="post"> -->
                         <div class="align_center">
+							
                             <label for="title"></label>
-                            <input type="text" class = 'text_tit' name="title" id="title" value="<?php echo $item["title"] ?>" maxlength="20" spellcheck="false">
+                            <input type="text" class='text_tit' name="title" id="title" value="<?php echo $item["title"] ?>" maxlength="20" spellcheck="false">
                             <br><br>
                             <label for="content"></label>
-                            <textarea class = 'text_con' name="content" id="content" cols="25" rows="10" spellcheck="false"><?php echo $item["content"] ?></textarea>
+                            <textarea class='text_con' name="content" id="content" cols="25" rows="10" spellcheck="false"><?php echo $item["content"] ?></textarea>
                         </div>	
                     </div>
                 </div>

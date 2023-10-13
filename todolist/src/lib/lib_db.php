@@ -249,7 +249,8 @@
 			;
 		// prepare 설정 준비
 			$arr_ps = [
-				":title" => $arr_param["title"]
+				":id" => $arr_param["id"]
+				,":title" => $arr_param["title"]
 				,":content" => $arr_param["content"]
 				,":em_id" => $arr_param["em_id"]
 			];
