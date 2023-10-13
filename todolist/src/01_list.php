@@ -7,7 +7,7 @@
 	$list_cnt = 5; //한 페이지에 최대 표시 수
 	$page_num = 1; // 페이지 번호 초기화
 	$yoil = array("일요일","월요일","화요일","수요일","목요일","금요일","토요일"); //요일 출력하기 위한 세팅
-	
+
 	try{
 		// ---------
 		// DB 접속
@@ -44,16 +44,27 @@
 			$next_page_num = $max_page_num;
 		}
 	
-		// DB 조회시 사용할 데이터 배열
+		// ---------
+		// DB 조회
+		// ---------
 		$arr_param = [
 			"list_cnt" => $list_cnt
 			,"offset" => $offset
 		];
 		
 		$result = db_select_boards_paging($conn, $arr_param);
-		if(!$result) {
+		if($result === False) {
 			throw new Exception("DB Error : SELECT boards paging ERROR");
 		}
+		
+		// ---------
+		// 감정 통계
+		// ---------
+		$result_emo_rank = db_select_boards_emo_rank($conn);
+		if($result_emo_rank === False) {
+			throw new Exception("DB Error : SELECT boards emo rank ERROR");
+		}
+		$rank_array = $result_emo_rank;
 		
 	} catch (Exception $e) {
 		// echo $e->getMessage(); 예외발생 메세지 출력 //v002del
@@ -89,33 +100,38 @@
 						<p class="left_top2_text2">-자주 기록했던 감정을 확인할 수 있어요</p>
 					</div>
 					<div class="left_middle">
-						<div class="left_bottom_layout1">
-							<img class="left_emotion_size1" src="/todolist/doc/img/emotion_1.png">
-							<img class="left_star_size1" src="/todolist/doc/img/star_1.png">
-							<p>행복 : 30</p>
-						</div>
-						<div class="left_bottom_layout1">
-							<img class="left_emotion_size1" src="/todolist/doc/img/emotion_3.png">
-							<img class="left_star_size1" src="/todolist/doc/img/star_2.png">
-							<p>평온 : 22</p>
-						</div>
-						<div class="left_bottom_layout1">
-							<img class="left_emotion_size1" src="/todolist/doc/img/emotion_5.png">
-							<img class="left_star_size1" src="/todolist/doc/img/star_3.png">
-							<p>우울 : 13</p>
-						</div>
+						<?php $i=0;
+						foreach ($rank_array as $item) {
+							$i++;
+							if($i == 4) {
+								break;
+							}
+						?>
+							<div class="left_bottom_layout1">
+								<img class="left_emotion_size1" src='<?php echo IMG.$item['em_path']; ?>'>
+								<img class="left_star_size1" src="/todolist/doc/img/star_<?php echo $i; ?>.png">
+								<p><?php echo $item['em_name']." : ".$item['cnt_em_id']; ?></p>
+							</div>
+						<?php
+						}
+						?>
 					</div>
 					<div class="left_bottom">
-						<div class="left_bottom_layout2">
-							<img class="left_emotion_size2" src="/todolist/doc/img/emotion_4.png">
-							<img class="left_star_size2" src="/todolist/doc/img/star_4.png">
-							<p>슬픔 : 7</p>
-						</div>
-						<div class="left_bottom_layout2">
-							<img class="left_emotion_size2" src="/todolist/doc/img/emotion_8.png">
-							<img class="left_star_size2" src="/todolist/doc/img/star_5.png">
-							<p>불안 : 4</p>
-						</div>
+						<?php $y=0;
+						foreach ($rank_array as $item) {
+							$y++;
+							if($y <=3) {
+								continue;
+							}
+						?>
+							<div class="left_bottom_layout2">
+								<img class="left_emotion_size2" src='<?php echo IMG.$item['em_path']; ?>'>
+								<img class="left_star_size2" src="/todolist/doc/img/star_<?php echo $y; ?>.png">
+								<p><?php echo $item['em_name']." : ".$item['cnt_em_id']; ?></p>
+							</div>
+						<?php
+						}
+						?>
 					</div>
 				</div>
 			</div>
