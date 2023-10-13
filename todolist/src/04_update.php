@@ -98,7 +98,8 @@ try {
 			// 게시글 수정 했을 경우 detail page로 이동
 			header("Location: 02_detail.php/?id={$id}&page={$page}");
 			exit;
-		}                                                    
+		}
+		                                              
 	}
 	// 게시글 데이터 조회를 위한 파라미터 세팅
 	$arr_param = [
