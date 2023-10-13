@@ -160,35 +160,37 @@
 	// ------------------------
     // 함수명 : db_insert_boards
     // 기능 : boards 데이터 추가
-    // 파라미터 : PDO 	 &$conn
-	//			 Array	&$arr_param 쿼리 작성용 배열
+    // 파라미터 : PDO    &$conn
+    //           Array  &$arr_param 쿼리 작성용 배열
     // 리턴 : Boolean
     // ------------------------
-	function db_insert_boards(&$conn, &$arr_param) {
-			$sql = 
-				" INSERT INTO boards( "
-				."		b_title "
-				."		,b_content "
-				."		) "
-				." VALUES( "
-				."		:b_title "
-				." 		,:b_content "
-				." ) "
-			;
-
-			$arr_ps = [
-				":b_title" => $arr_param["title"]
-				,":b_content" => $arr_param["content"]
-			];
-		try {
-			$stmt = $conn->prepare($sql);
-			$result = $stmt->execute($arr_ps);
-			return $result;
-		} catch (exception $e) {
-			echo $e->getMessage();
-			return false;
-		}
+    function db_insert_boards(&$conn, &$arr_param) {
+		$sql =
+			" INSERT INTO diary( "
+			."      title "
+			."      ,content "
+			."      ,em_id "
+			."      ) "
+			." VALUES( "
+			."      :title "
+			."      ,:content "
+			."      ,:em_id "
+			." ) "
+		;
+		$arr_ps = [
+			":title" => $arr_param["title"]
+			,":content" => $arr_param["content"]
+			,":em_id" => $arr_param["em_id"]
+		];
+	try {
+		$stmt = $conn->prepare($sql);
+		$result = $stmt->execute($arr_ps);
+		return $result;
+	} catch (exception $e) {
+		echo $e->getMessage();
+		return false;
 	}
+}
 
 	// ------------------------
     // 함수명 : db_update_boards_id
@@ -254,31 +256,4 @@
 			return false; // 예외발생 false리턴
 		}
 	}
-?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
 ?>
