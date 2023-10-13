@@ -1,6 +1,6 @@
 <?php
 define("ROOT", $_SERVER["DOCUMENT_ROOT"]."/todolist/src/");//웹서버root
-define("ERROR_MSG_PARAM", "%s 필수 입력 사항입니다.");// 파라미터 에러 메세지
+define("ERROR_MSG_PARAM", "⛔ %s을 입력해 주세요.");// 파라미터 에러 메세지
 require_once(ROOT."lib/lib_db.php");// DB관련 라이브러리
 
 // post로 request가 있을 때 처리
@@ -93,18 +93,24 @@ if($http_method === "POST") {
                                     <label class="emotion_each" for="emotion1">
                                     <input type="radio" name="em_id" id="emotion1" value="1">
                                     <img class="emo" src="/todolist/doc/img/emotion_1.png">
+                                    <br>
+                                    <p class="emotion_lay_p">행복</p>
                                     </label>
                                 </div>
                                 <div class="emotion_lay1">
                                     <label class="emotion_each" for="emotion2">
                                     <input type="radio" name="em_id" id="emotion2" value="2">
                                     <img class="emo" src="/todolist/doc/img/emotion_2.png">
+                                    <br>
+                                    <p class="emotion_lay_p">기쁨</p>
                                     </label>
                                 </div>
                                 <div class="emotion_lay1">
                                     <label class="emotion_each" for="emotion3">
                                     <input type="radio" name="em_id" id="emotion3" value="3">
                                     <img class="emo" src="/todolist/doc/img/emotion_3.png">
+                                    <br>
+                                    <p class="emotion_lay_p">평온</p>
                                     </label>
                                 </div>
                             </div>
@@ -113,18 +119,24 @@ if($http_method === "POST") {
                                     <label class="emotion_each" for="emotion4">
                                     <input type="radio" name="em_id" id="emotion4" value="4">
                                     <img class="emo" src="/todolist/doc/img/emotion_4.png">
+                                    <br>
+                                    <p class="emotion_lay_p">슬픔</p>
                                     </label>
                                 </div>
                                 <div class="emotion_lay2">
                                     <label class="emotion_each" for="emotion5">
                                     <input type="radio" name="em_id" id="emotion5" value="5">
                                     <img class="emo" src="/todolist/doc/img/emotion_5.png">
+                                    <br>
+                                    <p class="emotion_lay_p">우울</p>
                                     </label>
                                 </div>
                                 <div class="emotion_lay2">
                                     <label class="emotion_each" for="emotion6">
                                     <input type="radio" name="em_id" id="emotion6" value="6">
                                     <img class="emo" src="/todolist/doc/img/emotion_6.png">
+                                    <br>
+                                    <p class="emotion_lay_p">피곤</p>
                                     </label>
                                 </div>
                             </div>
@@ -133,12 +145,16 @@ if($http_method === "POST") {
                                     <label class="emotion_each" for="emotion7">
                                     <input type="radio" name="em_id" id="emotion7" value="7">
                                     <img class="emo" src="/todolist/doc/img/emotion_7.png">
+                                    <br>
+                                    <p class="emotion_lay_p">화남</p>
                                     </label>
                                 </div>
                                 <div class="emotion_lay3">
                                     <label class="emotion_each" for="emotion8">
                                     <input type="radio" name="em_id" id="emotion8" value="8">
                                     <img class="emo" src="/todolist/doc/img/emotion_8.png">
+                                    <br>
+                                    <p class="emotion_lay_p">불만</p>
                                     </label>
                                 </div>
                             </div>

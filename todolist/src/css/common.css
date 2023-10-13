@@ -177,6 +177,94 @@ a {
 	transform: scale(1.4);
 }
 
+/* 메인페이지- 배경 */
+.bg_img > div {
+	Position:absolute;
+	animation:blink-effect 2s linear infinite; 
+}
+.bg_img_01 {
+	width: 90px;
+	height: 90px;
+	Top:80px;
+	left:320px;
+	animation-delay:2s !important;
+}
+.bg_img_01 img {
+	width: 100%;
+	height: 100%;
+}
+.bg_img_02 {
+	width: 80px;
+	height: 70px;
+	Top:110px;
+	left:1000px;
+}
+.bg_img_02 img {
+	width: 100%;
+	height: 100%;
+}
+.bg_img_12 {
+	width: 35px;
+	height: 35px;
+	Top:100px;
+	left:950px;
+}
+.bg_img_12 img {
+	width: 100%;
+	height: 100%;
+}
+.bg_img_03 {
+	width: 110px;
+	height: 100px;
+	Top:150px;
+	right:420px;
+	animation-delay:7s !important;
+}
+.bg_img_03 img {
+	width: 100%;
+	height: 100%;
+}
+.bg_img_04 {
+	width: 80px;
+	height: 100px;
+	bottom:130px;
+	right:300px;
+}
+.bg_img_04 img {
+	width: 100%;
+	height: 100%;
+}
+.bg_img_05 {
+	width: 70px;
+	height: 90px;
+	top:530px;
+	right:220px;
+	animation-delay:5s !important;
+}
+.bg_img_05 img {
+	width: 100%;
+	height: 100%;
+}
+.bg_img_06 {
+	width: 80px;
+	height: 110px;
+	bottom:200px;
+	left:300px;
+	animation-delay:11s !important;
+}
+.bg_img_06 img {
+	width: 100%;
+	height: 100%;
+}
+
+/* 반짝이는 효과 */
+@keyframes blink-effect {
+	50% {
+	  opacity: 5%;
+	}
+  }
+
+
 /* 리스트페이지 */
 /* 리스트페이지 */
 .left_top {
@@ -434,7 +522,9 @@ a {
 	background-repeat: no-repeat;
 }
 
-.emotion_ma1 {
+/* 기존 이모티콘 위치 설정, 수정페이지도 동일 */
+
+/* .emotion_ma1 {
     display:flex;
     padding-top: 100px;
     padding-left: 15px;
@@ -446,17 +536,76 @@ a {
 .emotion_ma3 {
     display:flex;
     padding-left: 70px;
+} */
+
+.emotion_lay1 {
+	width: 100px;
+	height: 110px;
+	/* border: 1px solid #000; */
+	float: left;
+	margin: 80px 0px 0px 20px;
 }
 
-.emo {
-    width: 70px;
-    height: 70px;
-    margin: 10px 5px;
+.emotion_lay_p {
+	font-size: 20px;
 }
-.emo_1 {
-    width: 83px;
-    height: 83px;
-    margin: 8px 5px;
+
+.emotion_lay2 {
+	width: 100px;
+	height: 110px;
+	/* border: 1px solid #000; */
+	float: left;
+	margin: 20px 0px 0px 20px;
+}
+
+.emotion_lay3 {
+	width: 100px;
+	height: 110px;
+	/* border: 1px solid #000; */
+	float: left;
+	margin: 10px -20px 0px 70px;
+}
+
+/* .emotion_lay4 {
+	width: 100px;
+	height: 110px;
+	float: left;
+} */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.emo {
+    width: 65px;
+    height: 65px;
+    /* margin: 10px 5px; */
 }
 
 .emo_1 {
@@ -578,7 +727,7 @@ a {
 .emotion_each {
 	width: 80px;
 	height: 80px;
-	margin: 10px 20px;
+	/* margin: 10px 20px; */
 }
 /* .emotions {
 	width: 80px;
@@ -606,7 +755,7 @@ a {
 	transform: scale(1.3);
 }
 
-.emotion_ma1 {
+/* .emotion_ma1 {
 	display:flex;
 	padding-top: 100px;
 	padding-left: 15px;
@@ -618,7 +767,7 @@ a {
 .emotion_ma3 {
 	display:flex;
 	padding-left: 70px;
-}
+} */
 
 /* 꽃 이미지 effect */
 @keyframes rotate {

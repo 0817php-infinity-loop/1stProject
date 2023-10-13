@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>메인 페이지</title>
-	<link rel="stylesheet" href="/todolist/doc/design/css/common.css">
+	<link rel="stylesheet" href="/todolist/src/css/common.css">
 </head>
 <body>
 	<div class="top_container">
@@ -15,7 +15,7 @@
 			<img src="/todolist/doc/img/main_green.png">
 		</div>
 		<div class="item_center">
-			<a class="main_page_img" href="/todolist/doc/design/01_list.html"><img src="/todolist/doc/img/main_orange.png"></a>
+			<a class="main_page_img" href="/todolist/src/01_list.php"><img src="/todolist/doc/img/main_orange.png"></a>
 		</div>
 		<div class="item_right">
 			<img src="/todolist/doc/img/main_yellow.png">
