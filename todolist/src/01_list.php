@@ -7,7 +7,6 @@
 	$list_cnt = 5; //한 페이지에 최대 표시 수
 	$page_num = 1; // 페이지 번호 초기화
 	$yoil = array("일요일","월요일","화요일","수요일","목요일","금요일","토요일"); //요일 출력하기 위한 세팅
-
 	try{
 		// ---------
 		// DB 접속
@@ -147,13 +146,15 @@
 							<col width= "88%">
 						</colgroup>
 						<?php
-							//리스트 생성
+							//리스트 생성 
 							foreach ($result as $item) {
+								$string = preg_replace('/-/','년 ',$item['create_at'],1);
+								$string = preg_replace('/-/','월 ',$string,1)."일 ";
 								$item_yoil=$yoil[date('w', strtotime($item['create_at']))]; //요일 출력하기 위한 세팅
 						?>
 							<tr onclick="location.href='/todolist/src/02_detail.php/?id=<?php echo $item['id']; ?>&page=<?php echo $page_num;?>'" class="table_tr1 table_cursor">
 								<td class="table_emotion"><img src='<?php echo IMG.$item['em_path']; ?>'></td>
-								<td class="table_date"><?php echo $item["create_at"]; ?><br><?php echo $item_yoil; ?></td>
+								<td class="table_date"><?php echo $string; ?><br><?php echo $item_yoil; ?></td>
 							</tr>
 							<tr onclick="location.href='/todolist/src/02_detail.php/?id=<?php echo $item['id']; ?>&page=<?php echo $page_num;?>'" class="table_tr2 table_cursor">
 								<td class="table_title"colspan="2"><?php echo $item['title']; ?></td>
