@@ -135,8 +135,6 @@
 							<thead>
 								<tr>
 									<td class ="delete_textarea_1">
-										
-								
 										<?php echo $item["title"]; ?>
 									</td>
 								</tr>
