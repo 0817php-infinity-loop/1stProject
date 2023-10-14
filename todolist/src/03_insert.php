@@ -19,7 +19,7 @@ try {
     }
     $conn->beginTransaction(); // 트랜잭션 시작
 
-    $result=db_insert_boards_now($conn); // 현재 날짜 호출을 위해 함수 db_insert_boards_now($conn) 호출 후 변수($result)로 저장
+    $result=db_select_boards_now($conn); // 현재 날짜 호출을 위해 함수 db_select_boards_now($conn) 호출 후 변수($result)로 저장
     if($result === FALSE) {        
         throw new Exception("DB Error : 1 Boards");	// DB Instance 에러	
     }
@@ -199,7 +199,7 @@ if($http_method === "POST") { // method가 post인 경우
                                 // 함수 date : 날짜나 시간을 지정된 형식으로 변환
                                 // w : 함수 date에서 사용할 수 있는 요일을 나타내는 포맷 문자 > 0(일요일)~6(토요일) 
                                 // 함수 strtotime : 날짜나 시간 타임스탬프로 변환 
-                                // $result=db_insert_boards_now($conn); 현재 날짜 호출을 위해 함수 db_insert_boards_now($conn) 호출 후 변수($result)로 저장해둠
+                                // $result=db_select_boards_now($conn); 현재 날짜 호출을 위해 함수 db_insert_boards_now($conn) 호출 후 변수($result)로 저장해둠
                                 // 변수($result)에 저장해 둔 현재 날짜의 요일을 숫자(0~6)로 반환 
                                 // $yoil : 변수 $result에 저장해둔 요일 숫자을 숫자(0~6) 배열형태로 저장
                                 // $yoil = array("일요일","월요일","화요일","수요일","목요일","금요일","토요일")로 변수 선언해두었으므로, 해당 숫자의 값 호출 가능

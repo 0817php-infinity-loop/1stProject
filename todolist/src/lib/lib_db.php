@@ -194,6 +194,30 @@
 	}
 
 	// ------------------------
+    // 함수명 : db_select_boards_now
+    // 기능 : 현재 날짜 출력
+    // 파라미터 : PDO 	 &$conn
+    // 리턴 : String / False
+    // ------------------------
+
+	function db_select_boards_now(&$conn) {
+		try {
+		$sql =
+			" SELECT "
+			."		cast(NOW() as date) as now_a"
+		;
+
+		$stmt = $conn->query($sql);
+		$result = $stmt->fetchAll();
+		return $result[0]["now_a"];
+		} catch (exception $e) {
+			echo $e->getMessage();
+			return false;
+		}
+	}
+
+
+	// ------------------------
     // 함수명 : db_insert_boards
     // 기능 : boards 데이터 추가
     // 파라미터 : PDO    &$conn
@@ -218,31 +242,15 @@
 			,":content" => $arr_param["content"]
 			,":em_id" => $arr_param["em_id"]
 		];
-	try {
-		$stmt = $conn->prepare($sql);
-		$result = $stmt->execute($arr_ps);
-		return $result;
-	} catch (exception $e) {
-		echo $e->getMessage();
-		return false;
+		try {
+			$stmt = $conn->prepare($sql);
+			$result = $stmt->execute($arr_ps);
+			return $result;
+		} catch (exception $e) {
+			echo $e->getMessage();
+			return false;
+		}
 	}
-}
-
-function db_insert_boards_now(&$conn) {
-	try {
-	$sql =
-		" SELECT "
-		."		cast(NOW() as date) as now_a"
-	;
-
-	$stmt = $conn->query($sql);
-	$result = $stmt->fetchAll();
-	return $result[0]["now_a"];
-	} catch (exception $e) {
-		echo $e->getMessage();
-		return false;
-	}
-}
 
 	// ------------------------
     // 함수명 : db_update_boards_id
