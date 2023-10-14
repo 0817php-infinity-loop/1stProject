@@ -1,8 +1,8 @@
 <?php
 define("ROOT", $_SERVER["DOCUMENT_ROOT"]."/todolist/src/"); // 웹서버 root 패스 생성
 define("IMG", "/todolist/doc/img/");
-define("ERROR_MSG_PARAM", "⛔ %s을 입력해 주세요."); //파라미터 에러 메세지 // 제목, 내용
-define("ERROR_MSG_PARAM2", "⛔ %s을 클릭해 주세요."); //파라미터 에러 메세지 // 감정
+define("ERROR_MSG_PARAM", "⛔%s을 입력해 주세요."); //파라미터 에러 메세지 // 제목, 내용
+define("ERROR_MSG_PARAM2", "⛔%s을 선택해 주세요."); //파라미터 에러 메세지 // 감정
 require_once(ROOT."lib/lib_db.php");// DB관련 라이브러리
 
 // update page : 
@@ -234,14 +234,14 @@ try {
 							</div>
                         </div>
                         <div class="align_center">
-							<p class="align_center_txt">감정을 수정해 주세요 !</p>
+							<p class="align_center_txt">감정을 수정해 주세요 !</p>							
 							<?php
 								foreach ($arr_err_msg as $item) {
 							?>
-									<p><?php echo $item; ?></p>
+								<p class="err_msg letter_spacing line_height"><?php echo $item; ?></p>
 							<?php
 								}
-							?>
+							?>							
                         </div>
                     </div>
                 </div>

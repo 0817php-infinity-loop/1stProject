@@ -1,7 +1,7 @@
 <?php
 define("ROOT", $_SERVER["DOCUMENT_ROOT"]."/todolist/src/"); // 웹서버root
-define("ERROR_MSG_PARAM", "⛔ %s을 입력해 주세요."); // 파라미터 에러 메세지 // 제목, 내용
-define("ERROR_MSG_PARAM2", "⛔ %s을 클릭해 주세요."); // 파라미터 에러 메세지 // 감정
+define("ERROR_MSG_PARAM", "⛔%s을 입력해 주세요."); // 파라미터 에러 메세지 // 제목, 내용
+define("ERROR_MSG_PARAM2", "⛔%s을 선택해 주세요."); // 파라미터 에러 메세지 // 감정
 require_once(ROOT."lib/lib_db.php");// DB관련 라이브러리
 
 // post로 request가 있을 때 처리
@@ -69,12 +69,14 @@ if($http_method === "POST") { // method가 post인 경우
             
             header("Location: 01_list.php"); // List 페이지로 이동
             exit;
-		}
-
-        if(count($arr_err_msg) >= 1) { // $arr_err_msg[]가 1 이상일 경우(=title, content, em_id 입력 값 중 1개 이상 유효하지 않은 경우
-            throw new Exception(implode("<br>", $arr_err_msg)); // $arr_err_msg 배열 내용을 br로 연결하여 string형태로 변환
-            // implode : 배열형태를 string형태로 변환시켜줌
-        }
+		}        
+        $item = $result[0];
+        // 기존 //
+        // if(count($arr_err_msg) >= 1) { // $arr_err_msg[]가 1 이상일 경우(=title, content, em_id 입력 값 중 1개 이상 유효하지 않은 경우
+        //     throw new Exception(implode("<br>", $arr_err_msg)); // $arr_err_msg 배열 내용을 br로 연결하여 string형태로 변환
+        //     // implode : 배열형태를 string형태로 변환시켜줌
+        // }
+        // 기존 //
 	} catch(Exception $e) { // try문에서 예외 발생 시 catch문 실행 > 예외 변수($e)로 저장
 		if($conn !== null){
 			$conn->rollBack(); // DB 연결 존재(=null 아닌 경우)시 rollback
@@ -177,7 +179,14 @@ if($http_method === "POST") { // method가 post인 경우
                             </div>
                         </div>
                         <div class="align_center">
-                                <p class="align_center_txt">감정을 선택해 주세요 !</p>
+                            <p class="align_center_txt">감정을 선택해 주세요 !</p>                            
+                            <?php
+                                foreach ($arr_err_msg as $item) {
+                            ?>
+                                <p class="err_msg letter_spacing line_height"><?php echo $item; ?></p>
+                            <?php
+                                }
+                            ?>                            
                         </div>
                     </div>
                 </div>

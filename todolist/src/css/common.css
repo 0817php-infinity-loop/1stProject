@@ -617,8 +617,24 @@ a {
 	text-align: center;	
 }
 
+/* 에러메세지 조절 */
+.err_msg {
+	font-size: 20px;
+}
+
+.letter_spacing {
+	letter-spacing: 5px;
+}
+
+.line_height {
+	line-height: 25px;
+}
+/* 에러메세지 조절 끝 */
+
+
 .align_center_txt {
 	font-size: 40px;
+	letter-spacing: 5px;
 }
 
 .align_center_date {
