@@ -121,7 +121,8 @@ a {
 .button_text {
 	border: none;
 	background: none;
-	margin-left: 5px;
+	margin-left: 4px;
+	margin-top: -1px;
 	cursor: pointer;
 }
 
