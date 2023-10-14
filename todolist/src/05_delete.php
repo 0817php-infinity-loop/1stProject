@@ -86,6 +86,8 @@
 		} finally {
 				db_destroy_conn($conn);
 		}
+		$yoil = array("일요일","월요일","화요일","수요일","목요일","금요일","토요일");
+		$item_yoil=$yoil[date('w', strtotime($item['create_at']))];
 ?>
 
 <!DOCTYPE html>
@@ -123,7 +125,9 @@
 					<div class="box_layout">
 					<div class="align_center date">
 							<img class="detail_emo" src="<?php echo IMG.$item['em_path']; ?>">
-							<p class="align_center_date"><?php echo $print_date; ?><br>
+							<p class="align_center_date"><?php echo $print_date; ?>
+							<p class="align_center_date"><?php echo $item_yoil ?></p>
+							<br>
 							</p>
 						</div>
 						<br>					
@@ -131,8 +135,6 @@
 							<thead>
 								<tr>
 									<td class ="delete_textarea_1">
-										
-								
 										<?php echo $item["title"]; ?>
 									</td>
 								</tr>
