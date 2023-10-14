@@ -38,17 +38,19 @@
 			   }
 					
 			   $item = $result[0];
+			   // 0000년00월00일 추가
 			   $arr = explode('-', $item['create_at']);
 			   $print_date = $arr[0]."년 ".$arr[1]."월 ".$arr[2]."일";
 
-			} catch(Exception $e) {
-				echo $e->getMessage();
-				exit;
-			} finally {
-			   db_destroy_conn($conn); // DB 파기
-			}
-			$yoil = array("일요일","월요일","화요일","수요일","목요일","금요일","토요일");
-			$item_yoil=$yoil[date('w', strtotime($item['create_at']))];
+				} catch(Exception $e) {
+					echo $e->getMessage();
+					exit;
+				} finally {
+				db_destroy_conn($conn); // DB 파기
+				}
+				// 요일 출력
+				$yoil = array("일요일","월요일","화요일","수요일","목요일","금요일","토요일");
+				$item_yoil=$yoil[date('w', strtotime($item['create_at']))];
 ?>
 
 
@@ -72,6 +74,7 @@
 					<div class="box_layout">
 						<div class="say">		
 							<?php
+							// 명언 글귀 띄어쓰기
 							$print_poem = explode('-', $item['em_comment']);
 							foreach($print_poem as $print_poem_val) {
 								?>
