@@ -12,7 +12,7 @@
 				throw new Exception("DB Error : PDO Instance");
 			}
 	
-			// Mehod 가 get post인지 구분
+			// Method 가 get post인지 구분
 			$http_method = $_SERVER["REQUEST_METHOD"];
 	
 			if($http_method === "GET") {

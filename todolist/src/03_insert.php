@@ -23,12 +23,12 @@ try {
         throw new Exception("DB Error : Select Boards Now");	// DB Instance 에러	
     }
     if($http_method === "POST") { // method가 post인 경우
-		
+        
 		$title = isset($_POST["title"]) ? trim($_POST["title"]) : ""; //title 셋팅
 		$content = isset($_POST["content"]) ? trim($_POST["content"]) : ""; //content 셋팅
 		$em_id = isset($_POST["em_id"]) ? trim($_POST["em_id"]) : ""; //em_id 셋팅
 		
-		if($title === "") {            
+		if($title === "") {
 			$arr_err_msg[] = sprintf(ERROR_MSG_PARAM, "제목"); // title 없을 경우 $arr_err_msg[]에 오류 메세지 저장
 		}
 		if($content === "") {
