@@ -23,15 +23,12 @@ try {
         throw new Exception("DB Error : Select Boards Now");	// DB Instance 에러	
     }
     if($http_method === "POST") { // method가 post인 경우
-			
-		$arr_post = $_POST;	// 파라미터 획득- 변수($arr_post)로 저장	
-
+		
 		$title = isset($_POST["title"]) ? trim($_POST["title"]) : ""; //title 셋팅
 		$content = isset($_POST["content"]) ? trim($_POST["content"]) : ""; //content 셋팅
 		$em_id = isset($_POST["em_id"]) ? trim($_POST["em_id"]) : ""; //em_id 셋팅
 		
-		if($title === "") {
-            
+		if($title === "") {            
 			$arr_err_msg[] = sprintf(ERROR_MSG_PARAM, "제목"); // title 없을 경우 $arr_err_msg[]에 오류 메세지 저장
 		}
 		if($content === "") {
@@ -42,10 +39,6 @@ try {
 		}
 
 		if(count($arr_err_msg) === 0) { // $arr_err_msg[]가 0일 경우(=title, content, em_id 유효하게 입력 시) 
-            if(!db_conn($conn)) { // DB 연결                
-                throw new Exception("DB Error : PDO Instance"); // DB Instance 에러
-            }            
-                        
             $arr_param = $_POST; // 게시글 작성을 위해 파라미터 셋팅
 
             // insert

@@ -26,12 +26,11 @@
 		if ($boards_cnt === false){
 			throw new Exception("DB Error : select COUNT ERROR");
 		}
-
+		
 		// * 유저가 보내온 페이지 세팅 *
 		if (isset($_GET["page"])) {
 			$page_num = (int)$_GET["page"];
 		};
-
 		// * 최대 페이지 수 세팅 *
 		//		$max_page_num = 올림함수(총 게시글 수 / 한페이지당 게시글 수)
 		$max_page_num = ceil($boards_cnt / $list_cnt);
@@ -154,7 +153,7 @@
 					</div>
 				</div>
 			</div>
-				
+			
 			<div class="right_box">
 				<div class="box_layout list_position_rela">
 					<div class="right_top">
@@ -202,7 +201,7 @@
 								$str = $page_num === $present_num ? "bgc_black" : "hovor_bgc";
 								// 현재 페이지에 hovor 주기위해서 다른 클래스 적용
 						?>	
-							<a class=" right_page_num <?php echo $str;?>" href="/todolist/src/01_list.php/?page=<?php echo $i; ?>"><?php echo $i; ?></a>
+							<a class="right_page_num <?php echo $str; ?>" href="/todolist/src/01_list.php/?page=<?php echo $i; ?>"><?php echo $i; ?></a>
 						<?php
 							}
 						?>

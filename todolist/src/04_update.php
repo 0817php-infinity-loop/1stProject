@@ -1,4 +1,5 @@
 <?php
+// define 상수 
 define("ROOT", $_SERVER["DOCUMENT_ROOT"]."/todolist/src/"); // 웹서버 root 패스 생성
 define("IMG", "/todolist/doc/img/");
 define("ERROR_MSG_PARAM", "⛔%s을 입력해 주세요."); //파라미터 에러 메세지 // 제목, 내용
@@ -26,17 +27,14 @@ try {
 
     // 사용자가 처리할 수 없는 에러
     if($http_method === "GET") {
-        $id = isset($_GET["id"]) ? $_GET["id"] : $_POST["id"]; // id 세팅
-        $page = isset($_GET["page"]) ? $_GET["page"] : $_POST["page"]; // page 세팅
+        $id = isset($_GET["id"]) ? $_GET["id"] : ""; // id 세팅
+        $page = isset($_GET["page"]) ? $_GET["page"] : ""; // page 세팅
         
         if($id === "") {
 			$arr_err_msg[] = sprintf(ERROR_MSG_PARAM, "id");
 		}
 		if($page === "") {
 			$arr_err_msg[] = sprintf(ERROR_MSG_PARAM, "page");
-		}
-		if($page === "") {
-			$arr_err_msg[] = sprintf(ERROR_MSG_PARAM2, "emotion");
 		}
         if(count($arr_err_msg) >= 1) {
 			throw new Exception(implode("<br>", $arr_err_msg));
@@ -88,13 +86,14 @@ try {
 			];
 
 			// 게시글 수정 처리 POST Method 일 경우에만 트랜잭션 시작 
-			$conn->beginTransaction(); // 트랜잭션 시작
+			$conn->beginTransaction(); // 123line catch 업데이트 위치 전으로 트랜잭션 시작
 
 			if(!db_update_boards_id($conn, $arr_param)) {
-				// DB  Update_Boards 에러
+				// DB  Update_Boards 에러 
+				// 에러 발생했을 경우 catch로 throw
 				throw new Exception("DB Error : Update_Boards_id");
 			}
-			$conn->commit(); // commit
+			$conn->commit(); // 정상 처리가 될 경우 commit
 
 			// 게시글 수정 했을 경우 detail page로 이동
 			header("Location: 02_detail.php/?id={$id}&page={$page}");
@@ -102,7 +101,7 @@ try {
 		}
 
 	}
-	// 게시글 데이터 조회를 위한 파라미터 세팅
+	// 게시글 데이터 조회를 위한 파라미터 세팅 -> 함수명 : db_select_boards_id
 	$arr_param = [
 		"id" => $id
 	];
@@ -147,6 +146,7 @@ try {
 	<div class="top_container">
 	</div>
 	<form action="/todolist/src/04_update.php" method="post">
+		<!-- POST에 id페이지 값을 저장 시켜주는 것 -->
 		<input type="hidden" name="id" value="<?php echo $id ?>">
         <input type="hidden" name="page" value="<?php echo $page ?>">
         <div class="main_container">
@@ -236,9 +236,9 @@ try {
                         <div class="align_center">
 							<p class="align_center_txt">감정을 수정해 주세요 !</p>							
 							<?php
-								foreach ($arr_err_msg as $item) {
+								foreach ($arr_err_msg as $item_err) {
 							?>
-								<p class="err_msg letter_spacing line_height"><?php echo $item; ?></p>
+								<p class="err_msg letter_spacing line_height"><?php echo $item_err; ?></p>
 							<?php
 								}
 							?>							
@@ -253,9 +253,11 @@ try {
                             <p class="align_center_date"><?php echo $print_date ?><br> 
 							<!-- 요일 출력 -->
 							<?php
-								foreach ($result as $item) {
-									$item_yoil=$yoil[date('w', strtotime($item["create_at"]))];
-								}
+								$item_yoil=$yoil[date('w', strtotime($item["create_at"]))];
+								//  strtotime 문자열(Y-m-d H:i:s)
+								// w : 요일 숫자 표현 [ 0(일요일)에서 6(토요일) ]
+								// var_dump($item["create_at"]);
+								// var_dump(strtotime($item["create_at"]));
 								echo $item_yoil;
 							?>
                             </p>
@@ -264,10 +266,10 @@ try {
                         <!-- <form class="align_center" action="" method="post"> -->
                         <div class="align_center">
 							<?php 
-							if($http_method === "GET"){
+							if($http_method === "GET"){ // GET으로 처음 고유의 값 tit랑 con을 받아온다
 								$tit_stay= $item["title"];
 								$con_stay= $item["content"];
-							} else {
+							} else { // 에러가 떴을 때 수정 중인 내용을 POST 메소드에 저장해서 그 값을 val값으로 넣어줘서 변경 중이던 값을 그대로 출력할 수 있게 해준다
 								$tit_stay= $_POST["title"];
 								$con_stay= $_POST["content"];
 							}

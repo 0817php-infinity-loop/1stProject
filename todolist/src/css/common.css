@@ -133,6 +133,21 @@ a {
 	height: 650px;
 }
 
+.item_left, .item_center, .item_right {
+	float: left;
+}
+
+.item_left, .item_rig {
+	width: 20%;
+	height: 100%;
+}
+
+.item_center {
+	width: 60%;
+	height: 100%;
+	text-align: center;
+}
+
 .item_left img, .item_center img, .item_right img{
 	height: 100%;
 	background-size: cover;
@@ -152,21 +167,6 @@ a {
 .item_right img {
 	width: 30%;
 	float:right;
-}
-
-.item_left, .item_center, .item_right {
-	float: left;
-}
-
-.item_left, .item_right {
-	width: 20%;
-	height: 100%;
-}
-
-.item_center {
-	width: 60%;
-	height: 100%;
-	text-align: center;
 }
 
 /* 메인페이지- 줌인 */
@@ -428,8 +428,8 @@ a {
 
 .list_position_paging {
 	position: absolute;
-	bottom: 70px;
-	left: 180px;
+	bottom: 50px;
+	left: 175px;
 }
 .right_page_num {
 	display: inline-block;

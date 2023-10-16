@@ -26,7 +26,7 @@ try {
 	$arr_param = [
 		"id" => $id
 	];    
-	$result = db_select_boards_id($conn, $arr_param); 
+	$result = db_select_boards_id($conn, $arr_param);
 
 	// 게시글 조회 예외처리
 	if($result === false ) {
@@ -36,7 +36,7 @@ try {
 	// 게시글 조회 count 에러
 	throw new Exception("DB Error : PDO Select_id count, ".count($result));
 	}
-		
+	
 	$item = $result[0];
 	// 0000년00월00일 추가
 	$arr = explode('-', $item['create_at']);

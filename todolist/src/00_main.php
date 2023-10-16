@@ -8,7 +8,6 @@
 </head>
 <body>
 	<div class="top_container">
-
 	</div>
 	<div class="item">
 		<div class="item_left">
