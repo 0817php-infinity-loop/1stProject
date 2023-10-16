@@ -8,7 +8,7 @@ $id = "";
 $conn = null; // DB Connect
 
 try {
-	// id 확인
+	// 아이디가 없거나 공백일경우
 	if(!isset($_GET["id"]) || $_GET["id"] === "") {
 		throw new Exception("Parameter ERROR : No id"); // 강제 예외 발생 :
 	}
@@ -40,6 +40,7 @@ try {
 		
 	$item = $result[0];
 	// 0000년00월00일 추가
+	// explode 문자열을 분할하여 배열로 저장하는 함수
 	$arr = explode('-', $item['create_at']);
 	$print_date = $arr[0]."년 ".$arr[1]."월 ".$arr[2]."일";
 } catch(Exception $e) {
@@ -50,6 +51,7 @@ try {
 }
 // 요일 출력
 $yoil = array("일요일","월요일","화요일","수요일","목요일","금요일","토요일");
+// W(요일을 숫자 형태로 변환)
 $item_yoil=$yoil[date('w', strtotime($item['create_at']))];
 
 ?>
