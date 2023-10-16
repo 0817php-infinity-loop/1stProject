@@ -17,6 +17,7 @@ try {
     if(!db_conn($conn)) { // DB 연결
         throw new Exception("DB Error : PDO Instance");	// DB Instance 에러	
     }
+    $conn->beginTransaction(); // 트랜잭션 시작
     $result=db_select_boards_now($conn); // 현재 날짜 호출을 위해 함수 db_select_boards_now($conn) 호출 후 변수($result)로 저장
     if($result === FALSE) {        
         throw new Exception("DB Error : Select Boards Now");	// DB Instance 에러	
@@ -30,6 +31,7 @@ try {
 		$em_id = isset($_POST["em_id"]) ? trim($_POST["em_id"]) : ""; //em_id 셋팅
 		
 		if($title === "") {
+            
 			$arr_err_msg[] = sprintf(ERROR_MSG_PARAM, "제목"); // title 없을 경우 $arr_err_msg[]에 오류 메세지 저장
 		}
 		if($content === "") {
@@ -42,8 +44,7 @@ try {
 		if(count($arr_err_msg) === 0) { // $arr_err_msg[]가 0일 경우(=title, content, em_id 유효하게 입력 시) 
             if(!db_conn($conn)) { // DB 연결                
                 throw new Exception("DB Error : PDO Instance"); // DB Instance 에러
-            }
-            $conn->beginTransaction(); // 트랜잭션 시작
+            }            
                         
             $arr_param = $_POST; // 게시글 작성을 위해 파라미터 셋팅
 
@@ -63,6 +64,7 @@ try {
         // }
         // 기존 //	
     }
+
 } catch(Exception $e) { // try문에서 예외 발생 시 catch문 실행 > 예외 변수($e)로 저장
     if($http_method === "POST"){
         $conn->rollBack(); // DB 연결 존재(=null 아닌 경우)시 rollback
@@ -213,13 +215,13 @@ try {
 						<div class="align_center">
 							<label for="title"></label>
 							<input type="text" class = "textarea_1" name="title" id="title" value="<?php echo $title; ?>"
-							maxlength="20" placeholder="제목을 작성해주세요.">
+							maxlength="20" placeholder="제목을 작성해주세요." spellcheck="false">
                             <!-- $title = ""; 로 선언해두었고, $title = ""; 출력하여 입력 기본 값으로 설정 -->
                             <!-- value 설정해주면 post 파라미터에 저장됨 -->
 							<br><br>
 							<label for="content"></label>
 							<textarea class = "textarea_2" name="content" id="content" cols="25" rows="10"
-							placeholder="내용을 작성해주세요."><?php echo $content; ?></textarea>
+							placeholder="내용을 작성해주세요." spellcheck="false"><?php echo $content; ?></textarea>
                             <!-- $content = ""; 로 선언해두었고, $content = ""; 출력하여 입력 기본 값으로 설정 -->
 						</div>
                     </div>
