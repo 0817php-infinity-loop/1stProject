@@ -124,7 +124,7 @@ $item_yoil=$yoil[date('w', strtotime($item['create_at']))];
 
 				<div class="side_box">
 					<div class="side_category bgc_cate1">
-						<a class= "side_text" href="/todolist/src/01_list.php">목록</a>
+						<a class= "side_text" href="/todolist/src/01_list.php/?page=<?php echo $page; ?>">목록</a>
 					</div>
 					<div class="side_category bgc_cate2">
 						<a class= "side_text" href="/todolist/src/04_update.php/?id=<?php echo $id ?>&page=<?php echo $page ?>">수정</a>
