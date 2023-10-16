@@ -1,4 +1,5 @@
 <?php
+// define 상수
 define("ROOT", $_SERVER["DOCUMENT_ROOT"]."/todolist/src/");
 define("IMG", "/todolist/doc/img/");
 require_once(ROOT."lib/lib_db.php");

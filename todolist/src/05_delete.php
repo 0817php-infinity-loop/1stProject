@@ -48,6 +48,7 @@
 				}
 				// 날짜 출력
 				$item = $result[0];
+				// explode 문자열을 분할하여 배열로 저장하는 함수
 				$arr = explode('-', $item['create_at']);
 				$print_date = $arr[0]."년 ".$arr[1]."월 ".$arr[2]."일";
 	
