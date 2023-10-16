@@ -263,12 +263,20 @@ try {
                         <br>
                         <!-- <form class="align_center" action="" method="post"> -->
                         <div class="align_center">
-							
+							<?php 
+							if($http_method === "GET"){
+								$tit_stay= $item["title"];
+								$con_stay= $item["content"];
+							} else {
+								$tit_stay= $_POST["title"];
+								$con_stay= $_POST["content"];
+							}
+							?>
                             <label for="title"></label>
-                            <input type="text" class='text_tit' name="title" id="title" value="<?php echo $item["title"] ?>" maxlength="20" spellcheck="false">
+                            <input type="text" class='text_tit' name="title" id="title" value="<?php echo $tit_stay ?>" maxlength="20" spellcheck="false">
                             <br><br>
                             <label for="content"></label>
-                            <textarea class='text_con' name="content" id="content" cols="25" rows="10" spellcheck="false"><?php echo $item["content"] ?></textarea>
+                            <textarea class='text_con' name="content" id="content" cols="25" rows="10" spellcheck="false"><?php echo $con_stay ?></textarea>
                         </div>	
                     </div>
                 </div>
