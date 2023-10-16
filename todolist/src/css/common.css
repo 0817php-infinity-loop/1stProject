@@ -415,21 +415,40 @@ a {
 .table_border_none {
 	border-bottom: none;
 }
+
 .right_page {
 	width: 300px;
 	height: 30px;
-	margin: 0 auto;
 	text-align: center;
 }
 
+.list_position_rela {
+	position: relative;
+}
+
+.list_position_paging {
+	position: absolute;
+	bottom: 70px;
+	left: 180px;
+}
 .right_page_num {
 	display: inline-block;
 	width: 30px;
 	height: 30px;
 	line-height: 30px;
 	font-size: 18px;
-	border: 1px solid #ccc;
+	border: 1px solid #ccc;	
 }
+
+.hovor_bgc:hover {
+		background-color: #ccc;
+}
+	
+.bgc_black {
+		background-color: #000;
+		color: #fff;
+	}
+
 
 /* 상세페이지 */
 /* 상세페이지 */

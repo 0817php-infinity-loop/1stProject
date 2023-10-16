@@ -157,7 +157,7 @@
 			</div>
 				
 			<div class="right_box">
-				<div class="box_layout">
+				<div class="box_layout list_position_rela">
 					<div class="right_top">
 						<p>2023</p>
 					</div>
@@ -168,16 +168,17 @@
 						</colgroup>
 						<?php
 							// * 게시글 조회 부분 *
+							$replace_before=['/-/','/-/'];
+							$replace_after=['년 ','월 '];
 							foreach ($result as $item) {
-								$string = preg_replace('/-/','년 ',$item['create_at'],1);
-								$string = preg_replace('/-/','월 ',$string,1)."일 ";
+								$string = preg_replace($replace_before,$replace_after,$item['create_at'],1)."일";
 								$item_yoil=$yoil[date('w', strtotime($item['create_at']))]; //요일 출력하기 위한 세팅
 						?>
-							<tr onclick="location.href='/todolist/src/02_detail.php/?id=<?php echo $item['id']; ?>&page=<?php echo $page_num;?>'" class="table_tr1 table_cursor">
+							<tr class="table_tr1 table_cursor" onclick="location.href='/todolist/src/02_detail.php/?id=<?php echo $item['id']; ?>&page=<?php echo $page_num;?>'">
 								<td class="table_emotion"><img src='<?php echo IMG.$item['em_path']; ?>'></td>
 								<td class="table_date"><?php echo $string; ?><br><?php echo $item_yoil; ?></td>
 							</tr>
-							<tr onclick="location.href='/todolist/src/02_detail.php/?id=<?php echo $item['id']; ?>&page=<?php echo $page_num;?>'" class="table_tr2 table_cursor">
+							<tr class="table_tr2 table_cursor" onclick="location.href='/todolist/src/02_detail.php/?id=<?php echo $item['id']; ?>&page=<?php echo $page_num;?>'">
 								<td class="table_title"colspan="2"><?php echo $item['title']; ?></td>
 							</tr>
 						<?php
@@ -185,8 +186,8 @@
 						?>
 					</table>
 					<br><br>
-					<div class="right_page">
-						<a class="right_page_num" href="/todolist/src/01_list.php/?page=<?php echo $prev_page_num; ?>"><<</a>
+					<div class="right_page list_position_paging">
+						<a class="right_page_num hovor_bgc" href="/todolist/src/01_list.php/?page=<?php echo $prev_page_num; ?>"><<</a>
 						<?php
 							// * 게시글 조회 부분 *
 							$block_num=(int)ceil($page_num/5); // 블럭 페이지
@@ -202,11 +203,11 @@
 								$str = $page_num === $present_num ? "bgc_black" : "hovor_bgc";
 								// 현재 페이지에 hovor 주기위해서 다른 클래스 적용
 						?>	
-							<a class="right_page_num" href="/todolist/src/01_list.php/?page=<?php echo $i; ?>"><?php echo $i; ?></a>
+							<a class=" right_page_num <?php echo $str;?>" href="/todolist/src/01_list.php/?page=<?php echo $i; ?>"><?php echo $i; ?></a>
 						<?php
 							}
 						?>
-						<a class="right_page_num"  href="/todolist/src/01_list.php/?page=<?php echo $next_page_num; ?>">>></a>
+						<a class="right_page_num hovor_bgc" href="/todolist/src/01_list.php/?page=<?php echo $next_page_num; ?>">>></a>
 					</div>
 				</div>
 			</div>
