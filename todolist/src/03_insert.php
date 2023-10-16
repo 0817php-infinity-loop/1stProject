@@ -17,26 +17,12 @@ try {
     if(!db_conn($conn)) { // DB 연결
         throw new Exception("DB Error : PDO Instance");	// DB Instance 에러	
     }
-    $conn->beginTransaction(); // 트랜잭션 시작
-
     $result=db_select_boards_now($conn); // 현재 날짜 호출을 위해 함수 db_select_boards_now($conn) 호출 후 변수($result)로 저장
     if($result === FALSE) {        
-        throw new Exception("DB Error : 1 Boards");	// DB Instance 에러	
+        throw new Exception("DB Error : Select Boards Now");	// DB Instance 에러	
     }
-    $conn->commit(); // 모든 처리 완료 시 커밋
-} catch(Exception $e) { // try문에서 예외 발생 시 catch문 실행 > 예외 변수($e)로 저장
-    if($conn !== null){
-        $conn->rollBack(); // DB 연결 존재(=null 아닌 경우)시 rollback
-    }
-    echo $e->getMessage(); // 예외발생 메세지 출력
-    exit;
-} finally { // 예외 발생 여부 상관 없이 실행하여 DB 파기
-    db_destroy_conn($conn); // DB파기 위해 함수 db_destroy_conn($conn) 호출
-}
-
-
-if($http_method === "POST") { // method가 post인 경우
-	try {		
+    if($http_method === "POST") { // method가 post인 경우
+			
 		$arr_post = $_POST;	// 파라미터 획득- 변수($arr_post)로 저장	
 
 		$title = isset($_POST["title"]) ? trim($_POST["title"]) : ""; //title 셋팅
@@ -69,23 +55,22 @@ if($http_method === "POST") { // method가 post인 경우
             
             header("Location: 01_list.php"); // List 페이지로 이동
             exit;
-		}        
-        $item = $result[0];
+		}
         // 기존 //
         // if(count($arr_err_msg) >= 1) { // $arr_err_msg[]가 1 이상일 경우(=title, content, em_id 입력 값 중 1개 이상 유효하지 않은 경우
         //     throw new Exception(implode("<br>", $arr_err_msg)); // $arr_err_msg 배열 내용을 br로 연결하여 string형태로 변환
         //     // implode : 배열형태를 string형태로 변환시켜줌
         // }
-        // 기존 //
-	} catch(Exception $e) { // try문에서 예외 발생 시 catch문 실행 > 예외 변수($e)로 저장
-		if($conn !== null){
-			$conn->rollBack(); // DB 연결 존재(=null 아닌 경우)시 rollback
-		}	
-		echo $e->getMessage(); // 예외발생 메세지 출력
-		exit;
-	} finally { // 예외 발생 여부 상관 없이 실행하여 DB 파기
-		db_destroy_conn($conn); // DB파기 위해 함수 db_destroy_conn($conn) 호출
-	}
+        // 기존 //	
+    }
+} catch(Exception $e) { // try문에서 예외 발생 시 catch문 실행 > 예외 변수($e)로 저장
+    if($http_method === "POST"){
+        $conn->rollBack(); // DB 연결 존재(=null 아닌 경우)시 rollback
+    }
+    echo $e->getMessage(); // 예외발생 메세지 출력
+    exit;
+} finally { // 예외 발생 여부 상관 없이 실행하여 DB 파기
+    db_destroy_conn($conn); // DB파기 위해 함수 db_destroy_conn($conn) 호출
 }
 ?>
 
