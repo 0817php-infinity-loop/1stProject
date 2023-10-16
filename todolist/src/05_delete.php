@@ -145,7 +145,7 @@
 							</tr>
 							<tr>
 								<td class ="delete_textarea_2">
-									<?php echo $item["content"]; ?>
+								<?php echo str_replace("\r\n", "<br>", $item["content"]); ?>
 								</td>
 							</tr>
 						</table>

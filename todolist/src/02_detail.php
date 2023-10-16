@@ -1,56 +1,56 @@
 <?php
-		define("ROOT", $_SERVER["DOCUMENT_ROOT"]."/todolist/src/");
-		define("IMG", "/todolist/doc/img/");
-		require_once(ROOT."lib/lib_db.php");
+define("ROOT", $_SERVER["DOCUMENT_ROOT"]."/todolist/src/");
+define("IMG", "/todolist/doc/img/");
+require_once(ROOT."lib/lib_db.php");
+
+$id = "";
+$conn = null; // DB Connect
+
+try {
+	// id 확인
+	if(!isset($_GET["id"]) || $_GET["id"] === "") {
+		throw new Exception("Parameter ERROR : No id"); // 강제 예외 발생 :
+	}
+	$id = $_GET["id"]; // id 셋팅
+
+	if(!isset($_GET["page"]) || $_GET["page"] === "") {
+		throw new Exception("Parameter ERROR : No page"); // 강제 예외 발생 :
+	}
+	$page = $_GET["page"]; // page 셋팅
+	// DB 연결
+	if(!db_conn($conn)) {
+		// DB Instance 에러
+		throw new Exception("DB Error : PDO Instance");
+	}
+	// 게시글 데이터 조회
+	$arr_param = [
+		"id" => $id
+	];    
+	$result = db_select_boards_id($conn, $arr_param); 
+
+	// 게시글 조회 예외처리
+	if($result === false ) {
+		// 게시글 조회 에러
+		throw new Exception("DB Error : PDO Select_id");
+	} else if(!(count($result) === 1)) {
+	// 게시글 조회 count 에러
+	throw new Exception("DB Error : PDO Select_id count, ".count($result));
+	}
 		
-		$id = "";
-		$conn = null; // DB Connect
+	$item = $result[0];
+	// 0000년00월00일 추가
+	$arr = explode('-', $item['create_at']);
+	$print_date = $arr[0]."년 ".$arr[1]."월 ".$arr[2]."일";
+} catch(Exception $e) {
+	echo $e->getMessage();
+	exit;
+} finally {
+	db_destroy_conn($conn); // DB 파기
+}
+// 요일 출력
+$yoil = array("일요일","월요일","화요일","수요일","목요일","금요일","토요일");
+$item_yoil=$yoil[date('w', strtotime($item['create_at']))];
 
-		try {
-			// id 확인
-			if(!isset($_GET["id"]) || $_GET["id"] === "") {
-				throw new Exception("Parameter ERROR : No id"); // 강제 예외 발생 :
-			}
-			$id = $_GET["id"]; // id 셋팅
-
-			if(!isset($_GET["page"]) || $_GET["page"] === "") {
-				throw new Exception("Parameter ERROR : No page"); // 강제 예외 발생 :
-			}
-			$page = $_GET["page"]; // page 셋팅
-			// DB 연결
-			if(!db_conn($conn)) {
-				// DB Instance 에러
-				throw new Exception("DB Error : PDO Instance");
-			}
-			    // 게시글 데이터 조회
-				$arr_param = [
-					"id" => $id
-				];    
-			   $result = db_select_boards_id($conn, $arr_param); 
-			
-			   // 게시글 조회 예외처리
-			   if($result === false ) {
-					// 게시글 조회 에러
-					throw new Exception("DB Error : PDO Select_id");
-			   } else if(!(count($result) === 1)) {
-				// 게시글 조회 count 에러
-				throw new Exception("DB Error : PDO Select_id count, ".count($result));
-			   }
-					
-			   $item = $result[0];
-			   // 0000년00월00일 추가
-			   $arr = explode('-', $item['create_at']);
-			   $print_date = $arr[0]."년 ".$arr[1]."월 ".$arr[2]."일";
-
-				} catch(Exception $e) {
-					echo $e->getMessage();
-					exit;
-				} finally {
-				db_destroy_conn($conn); // DB 파기
-				}
-				// 요일 출력
-				$yoil = array("일요일","월요일","화요일","수요일","목요일","금요일","토요일");
-				$item_yoil=$yoil[date('w', strtotime($item['create_at']))];
 ?>
 
 
@@ -115,7 +115,7 @@
 							</tr>
 							<tr>
 								<td class ="detail_textarea_2">
-									<?php echo $item["content"]; ?>
+									<?php echo str_replace("\r\n", "<br>", $item["content"]); ?>
 								</td>
 							</tr>
 						</table>
