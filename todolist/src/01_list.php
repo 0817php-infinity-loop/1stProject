@@ -34,7 +34,7 @@
 
 		// * 최대 페이지 수 세팅 *
 		//		$max_page_num = 올림함수(총 게시글 수 / 한페이지당 게시글 수)
-		$max_page_num = ceil(db_select_boards_cnt($conn) / $list_cnt);
+		$max_page_num = ceil($boards_cnt / $list_cnt);
 
 		// * 오프셋 세팅 *
 		//		db_select_boards_paging 함수에서 게시글의 반복을 방지
@@ -78,7 +78,6 @@
 		// ------------------------------------------------------------------------
 		// 감정 통계 조회
 		// ------------------------------------------------------------------------
-
 		$rank_array = db_select_boards_emo_rank($conn);
 		if($rank_array === False) {
 			throw new Exception("DB Error : SELECT boards emo rank ERROR");
@@ -113,7 +112,7 @@
 					</div>
 					<div class="left_top2">
 						<p class="left_top2_text1">나의 감정은 어때 ?</p>
-						<p class="left_top2_text2">-자주 기록했던 감정을 확인할 수 있어요</p>
+						<p class="left_top2_text2">- 자주 기록했던 감정을 확인할 수 있어요</p>
 					</div>
 					<div class="left_middle">
 						<?php
@@ -159,7 +158,7 @@
 			<div class="right_box">
 				<div class="box_layout list_position_rela">
 					<div class="right_top">
-						<p>2023</p>
+						<p>Diary</p>
 					</div>
 					<table class="right_table">
 						<colgroup>
@@ -171,7 +170,7 @@
 							$replace_before=['/-/','/-/'];
 							$replace_after=['년 ','월 '];
 							foreach ($result as $item) {
-								$string = preg_replace($replace_before,$replace_after,$item['create_at'],1)."일";
+								$string = preg_replace($replace_before, $replace_after, $item['create_at'], 1)."일";
 								$item_yoil=$yoil[date('w', strtotime($item['create_at']))]; //요일 출력하기 위한 세팅
 						?>
 							<tr class="table_tr1 table_cursor" onclick="location.href='/todolist/src/02_detail.php/?id=<?php echo $item['id']; ?>&page=<?php echo $page_num;?>'">
