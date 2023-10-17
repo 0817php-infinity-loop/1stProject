@@ -265,6 +265,7 @@ try {
                         <br>
                         <!-- <form class="align_center" action="" method="post"> -->
                         <div class="align_center">
+							<!-- 상위 php에 넣어서 설정하는게 맞음 -->
 							<?php 
 							if($http_method === "GET"){ // GET으로 처음 고유의 값 tit랑 con을 받아온다
 								$tit_stay= $item["title"];
