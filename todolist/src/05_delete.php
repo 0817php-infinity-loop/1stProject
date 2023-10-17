@@ -87,6 +87,7 @@
 		} finally {
 				db_destroy_conn($conn);
 		}
+		// W(요일을 숫자 형태로 변환) strtotime 사람이 인식하는날짜를 컴퓨터가 인식하는 날짜로 바꿔주는 함수.
 		$yoil = array("일요일","월요일","화요일","수요일","목요일","금요일","토요일");
 		$item_yoil=$yoil[date('w', strtotime($item['create_at']))];
 ?>

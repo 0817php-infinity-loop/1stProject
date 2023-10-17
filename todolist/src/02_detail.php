@@ -81,7 +81,7 @@ $item_yoil=$yoil[date('w', strtotime($item['create_at']))];
 							$print_poem = explode('-', $item['em_comment']);
 							foreach($print_poem as $print_poem_val) {
 								?>
-								<p class="detail_poem"> <?php echo $print_poem_val."\n"; ?></p>
+								<p class="detail_poem"><?php echo $print_poem_val."\n"; ?></p>
 								<?php
 							}
 							?>
@@ -118,6 +118,7 @@ $item_yoil=$yoil[date('w', strtotime($item['create_at']))];
 							</tr>
 							<tr>
 								<td class ="detail_textarea_2">
+									<!-- str_replace 1.변경대상 2.변경하려는 문자 3.변수 -->
 									<?php echo str_replace("\r\n", "<br>", $item["content"]); ?>
 								</td>
 							</tr>
