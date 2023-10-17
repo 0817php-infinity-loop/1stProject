@@ -137,7 +137,7 @@ a {
 	float: left;
 }
 
-.item_left, .item_rig {
+.item_left, .item_right {
 	width: 20%;
 	height: 100%;
 }
