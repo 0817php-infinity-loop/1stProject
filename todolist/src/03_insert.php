@@ -49,13 +49,7 @@ try {
             
             header("Location: 01_list.php"); // List 페이지로 이동
             exit;
-		}
-        // 기존 //
-        // if(count($arr_err_msg) >= 1) { // $arr_err_msg[]가 1 이상일 경우(=title, content, em_id 입력 값 중 1개 이상 유효하지 않은 경우
-        //     throw new Exception(implode("<br>", $arr_err_msg)); // $arr_err_msg 배열 내용을 br로 연결하여 string형태로 변환
-        //     // implode : 배열형태를 string형태로 변환시켜줌
-        // }
-        // 기존 //	
+		}      
     }
 
 } catch(Exception $e) { // try문에서 예외 발생 시 catch문 실행 > 예외 변수($e)로 저장
@@ -221,15 +215,7 @@ try {
                 </div>
                 <div class="side_box">
                     <div class="side_category bgc_cate1">
-                        <button class= "side_text button_text" type="submit">작성</button>                       
-
-                        <!-- 기존 태그 -->
-                        <!-- <button class= "side_text button_text" type= submit href="/todolist/src/03_insert.php">작성</button> -->
-                       
-                        <!-- <form action="/todolist/src/03_insert.php" method="post"> 으로 정의 -->
-                        <!-- 작성버튼 클릭 시 03_insert.php post요청 > 데이터 전송 -->
-                        <!-- $arr_err_msg[]가 0일 경우(=title, content, em_id 유효하게 입력 시) -->
-                        <!-- 트랜잭션 시작 > 커밋 > header("Location: 01_list.php"); // List 페이지로 이동 -->
+                        <button class= "side_text button_text" type="submit">작성</button>
                     </div>
                     <div class="side_category bgc_cate3">
                         <a class= "side_text" href="/todolist/src/01_list.php/?page=1">취소</a>
