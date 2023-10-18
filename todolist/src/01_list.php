@@ -187,7 +187,7 @@
 					<div class="right_page list_position_paging">
 						<a class="right_page_num hovor_bgc" href="/todolist/src/01_list.php/?page=<?php echo $prev_page_num; ?>"><<</a>
 						<?php
-							// * 게시글 조회 부분 *
+							// * 페이징 부분 *
 							$block_num=(int)ceil($page_num/5); // 블럭 페이지
 							$block_first_num=(5*$block_num)-4; // 블럭 페이지 당 첫번째 페이지 값
 							$present_num=$block_first_num-1;
