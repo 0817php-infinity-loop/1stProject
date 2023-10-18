@@ -1,6 +1,6 @@
 <?php
 		define("ROOT", $_SERVER["DOCUMENT_ROOT"]."/todolist/src/");
-		define("IMG", "/todolist/doc/img/");
+		define("IMGPATH", "/todolist/doc/img/");
 		require_once(ROOT."lib/lib_db.php");
 		
 		try {
@@ -126,7 +126,7 @@
 				<div class="right_box">
 					<div class="box_layout">
 					<div class="align_center date">
-							<img class="detail_emo" src="<?php echo IMG.$item['em_path']; ?>">
+							<img class="detail_emo" src="<?php echo IMGPATH.$item['em_path']; ?>">
 							<p class="align_center_date"><?php echo $print_date; ?>
 							<p class="align_center_date"><?php echo $item_yoil ?></p>
 							<br>
