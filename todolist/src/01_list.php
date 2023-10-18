@@ -1,6 +1,6 @@
 <?php
 	define("ROOT", $_SERVER["DOCUMENT_ROOT"]."/todolist/src/"); //ROOT 경로 세팅
-	define("IMG", "/todolist/doc/img/"); //IMG 파일 경로 세팅
+	define("IMGPATH", "/todolist/doc/img/"); //IMG 파일 경로 세팅
 	require_once(ROOT."lib/lib_db.php"); // 함수파일 로드
 
 	$conn = null; // DB connection 변수
@@ -124,7 +124,7 @@
 							} // 1, 2, 3번까지 출력
 						?>
 							<div class="left_bottom_layout1">
-								<img class="left_emotion_size1" src='<?php echo IMG.$item['em_path']; ?>'>
+								<img class="left_emotion_size1" src='<?php echo IMGPATH.$item['em_path']; ?>'>
 								<img class="left_star_size1" src="/todolist/doc/img/star_<?php echo $i; ?>.png">
 								<p><?php echo $item['em_name']." : ".$item['cnt_em_id']; ?></p>
 							</div>
@@ -143,7 +143,7 @@
 							} // 4, 5번 출력
 						?>
 							<div class="left_bottom_layout2">
-								<img class="left_emotion_size2" src='<?php echo IMG.$item['em_path']; ?>'>
+								<img class="left_emotion_size2" src='<?php echo IMGPATH.$item['em_path']; ?>'>
 								<img class="left_star_size2" src="/todolist/doc/img/star_<?php echo $y; ?>.png">
 								<p><?php echo $item['em_name']." : ".$item['cnt_em_id']; ?></p>
 							</div>
@@ -173,7 +173,7 @@
 								$item_yoil=$yoil[date('w', strtotime($item['create_at']))]; //요일 출력하기 위한 세팅
 						?>
 							<tr class="table_tr1 table_cursor" onclick="location.href='/todolist/src/02_detail.php/?id=<?php echo $item['id']; ?>&page=<?php echo $page_num;?>'">
-								<td class="table_emotion"><img src='<?php echo IMG.$item['em_path']; ?>'></td>
+								<td class="table_emotion"><img src='<?php echo IMGPATH.$item['em_path']; ?>'></td>
 								<td class="table_date"><?php echo $string; ?><br><?php echo $item_yoil; ?></td>
 							</tr>
 							<tr class="table_tr2 table_cursor" onclick="location.href='/todolist/src/02_detail.php/?id=<?php echo $item['id']; ?>&page=<?php echo $page_num;?>'">
