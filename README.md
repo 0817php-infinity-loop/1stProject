@@ -1,3 +1,6 @@
+# TODOLIST
+## 주제: 감정일기
+## 팀원: 오성찬(팀장), 여중기, 차민지, 정건
 ![0001](https://github.com/0817php-infinity-loop/1stProject/assets/142552306/eba990e2-059b-4716-9bc0-d324e26c9ba1)
 ![0002](https://github.com/0817php-infinity-loop/1stProject/assets/142552306/d18f4c94-a813-4e88-8ab0-071ec588b199)
 ![0003](https://github.com/0817php-infinity-loop/1stProject/assets/142552306/f3559860-3cf5-41d4-9d99-09573243af1a)
@@ -21,5 +24,3 @@
 ![0022](https://github.com/0817php-infinity-loop/1stProject/assets/142552306/381839b6-bcf4-46f5-85b0-8e2a2511b5df)
 ![0023](https://github.com/0817php-infinity-loop/1stProject/assets/142552306/56f77d8e-51f1-4c4e-9bc7-97068bf1422a)
 ![0024](https://github.com/0817php-infinity-loop/1stProject/assets/142552306/7a63f112-dbc4-4811-b6db-56936b21f063)
-
-![시연 동영상](https://github.com/0817php-infinity-loop/1stProject/assets/142552306/a2f55853-5ff0-41a9-bb20-5c03588e6a0e)
