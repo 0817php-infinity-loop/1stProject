@@ -18,7 +18,8 @@
 		$db_pw = "team21"; // password
 		$db_name = "team21"; // DB name
 		$db_charset = "utf8mb4"; // charset
-		$db_dns = "mysql:host=".$db_host.";dbname=".$db_name.";charset=".$db_charset;
+		$db_port = "6009";
+		$db_dns = "mysql:host=".$db_host.";port=".$db_port.";dbname=".$db_name.";charset=".$db_charset;
 		
 		try {
 			$db_options = [
