@@ -2,6 +2,7 @@
 ## 주제: 감정일기
 ## 팀원: 오성찬(팀장), 여중기, 차민지, 정건
 ## 프로젝트 기간: 2023.10.06 ~ 2023.10.18
+## 링크 : http://112.222.157.156:6021/todolist/src/
 ![0001](https://github.com/0817php-infinity-loop/1stProject/assets/142552306/eba990e2-059b-4716-9bc0-d324e26c9ba1)
 ![0002](https://github.com/0817php-infinity-loop/1stProject/assets/142552306/d18f4c94-a813-4e88-8ab0-071ec588b199)
 ![0003](https://github.com/0817php-infinity-loop/1stProject/assets/142552306/f3559860-3cf5-41d4-9d99-09573243af1a)
