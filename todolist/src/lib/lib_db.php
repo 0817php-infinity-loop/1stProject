@@ -13,10 +13,10 @@
     // 리턴 : boolean
     // ------------------------
 	function db_conn( &$conn ) { //reference 파라미터 = (&) 변수 주소값을 넘겨 받는다.
-		$db_host = "192.168.0.77"; // host
-		$db_user = "team1"; //user
-		$db_pw = "team1"; // password
-		$db_name = "diarydb"; // DB name
+		$db_host = "112.222.157.156"; // host
+		$db_user = "team21"; //user
+		$db_pw = "team21"; // password
+		$db_name = "team21"; // DB name
 		$db_charset = "utf8mb4"; // charset
 		$db_dns = "mysql:host=".$db_host.";dbname=".$db_name.";charset=".$db_charset;
 		
